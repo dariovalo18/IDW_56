@@ -12,20 +12,22 @@ header {
 main {
     padding: 20px;
 }
+
 nav ul li{
     margin: 0 15px;
     color: white;
     display: inline-block;
     padding: 10px 15px; 
 }
-a {
+
+nav a {
     text-decoration: none;
     color: white;
     padding: 10px 15px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
-a:hover {
+nav a:hover {
     background-color: lightblue;
 }
 
