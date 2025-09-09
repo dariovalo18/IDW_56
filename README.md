@@ -4,9 +4,12 @@ Trabajo practivo n1 de IDW 2025
 Primera parte del trabajo integrador
 
 
-#Grupo 56:
+# Grupo 56:
 
 * Dario Gabriel Arias
 * Andrés Agustín Garcia
 * Nicolas Ibarra
 * Valentin Suarez
+
+
+# Link a repositorio: https://github.com/dariovalo18/TP1-IDW
