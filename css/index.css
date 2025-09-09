@@ -27,6 +27,12 @@ main {
 }
 .lista-servicios li a :hover{
     color: blue;
+    background-color: darkblue;
+    box-shadow: 0 4px 6px rgba(red, green, blue, alpha);
+    padding: 20px;
+    margin: 15px 0;
+    transition: transform 0.3s
+    ease-in-out;
 }
 nav ul li{
     margin: 0 15px;
