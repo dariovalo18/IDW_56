@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html>
-
-    <title>IDW S.A. - Clínica</title>
-    <head>       
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Clínica IDW S.A. - Contacto y consultas.">
+        <title>IDW S.A. - Clínica</title>       
         <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="css/contacto.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     </head>
 <body>
     <header>
@@ -15,17 +19,60 @@
                 <li><a href="#">Especialidades</a></li>
                 <li><a href="#">Contacto</a></li>
             </ul>
+        </nav>
     </header>
-    <main>
-       
-
-        <section>
+    <main style="padding-bottom:70px;">
+        <section id="contacto">
             <h2>Contacto</h2>
-            <ul>               
-                <li><a href="mailto:info@clinica.com">Email de contacto</a></li>                
-            </ul>
-        </section>
+            <h3>Gracias por contactarse con Clínica IDW</h3>
+            <div style="max-width:1100px; margin:0 auto;">
+                <div class="contact-layout">
+                    <div class="contact-info">
+                        <address>
+                            <p><strong>Dirección:</strong> San Martin 3115</p>
+                            <p><strong>Teléfono:</strong> <a href="tel:+5492477558899">+54 9 2477 558899</a></p>               
+                            <p><strong>Email de contacto:</strong> <a href="mailto:info@clinica.com">info@clinica.com</a></p>
+                            <p><strong>Horario:</strong> Abierto las 24hs</p>                
+                        </address>
+                        <div class="social-icons">
+                            <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="https://wa.me/5492477558899" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                        </div>
+                        <h3>Ubicación</h3>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.0846987043114!2d-60.60224912537727!3d-33.88747242002432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b8355c83ad5c9d%3A0x62c1d96363e199d9!2sSan%20Mart%C3%ADn%203115%2C%20Pergamino%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1757428326497!5m2!1ses!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="contact-form">
+                        <form action="/contact" method="post">
+                            <h3>Déjenos su mensaje y le responderemos a la brevedad</h3>
+                            <fieldset>                                
+                                <legend>Enviar consulta</legend>
 
+                                <label for="name">Nombre completo</label><br>
+                                <input id="name" name="name" type="text" required><br><br>
+
+                                <label for="name">Documento</label><br>
+                                <input id="name" name="name" type="text" required><br><br>
+
+                                <label for="name">Obra Social</label><br>
+                                <input id="name" name="name" type="text" required><br><br>
+
+                                <label for="email">Correo electrónico</label><br>
+                                <input id="email" name="email" type="email" required><br><br>
+
+                                <label for="phone">Teléfono</label><br>
+                                <input id="phone" name="phone" type="tel"><br><br>
+
+                                <label for="message">Mensaje</label><br>
+                                <textarea id="message" name="message" rows="5" required></textarea><br><br>
+
+                                <button type="submit">Enviar</button>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     <footer>
         <p>&copy; 2025 IDW S.A. Todos los derechos reservados.</p>
