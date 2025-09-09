@@ -18,21 +18,25 @@ main {
     text-align: center;
 }
 .lista-servicios li{
-    margin: 0 10px;
-    font-size: 1.2em;
+    background-color: blue;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(red, green, blue, alpha);
+    padding: 20px;
+    margin: 15px auto;
+    max-width: 500px;
+    transition: transform 0.3s
+    ease-in-out;
+}
+.lista-servicios li a :hover{
+    transform: translateY(-5px);
 }
 .lista-servicios li a{
     text-decoration: none;
     color: #333;
+    font-weight: bold;
 }
 .lista-servicios li a :hover{
     color: blue;
-    background-color: darkblue;
-    box-shadow: 0 4px 6px rgba(red, green, blue, alpha);
-    padding: 15px;
-    margin: 15px 0;
-    transition: transform 0.3s
-    ease-in-out;
 }
 nav ul li{
     margin: 0 15px;
