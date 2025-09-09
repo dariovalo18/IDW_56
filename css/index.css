@@ -12,7 +12,22 @@ header {
 main {
     padding: 20px;
 }
-
+.lista-servicios{
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+.lista-servicios li{
+    margin: 0 10px;
+    font-size: 1.2em;
+}
+.lista-servicios li a{
+    text-decoration: none;
+    color: #333;
+}
+.lista-servicios li a :hover{
+    color: blue;
+}
 nav ul li{
     margin: 0 15px;
     color: white;
