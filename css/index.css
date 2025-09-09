@@ -11,7 +11,7 @@ header {
     padding: 10px;
 }
 #logo {
-    width: 80px; /* ajusta el tamaño si quieres */
+    width: 80px; 
     margin-right: 20px;
 }
 h1 {
@@ -98,7 +98,7 @@ footer {
     margin-top: 10px;
     padding: 8px 16px;
     background: #4CAF50;
-    color: #fff;
+    color: #FFFFFF;
     text-decoration: none;
     border-radius: 4px;
 }
