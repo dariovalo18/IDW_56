@@ -15,15 +15,26 @@ main {
 .lista-servicios{
     list-style-type: none;
     padding: 0;
+    margin-bottom: 50px;
     text-align: center;
 }
 .lista-servicios li{
-    margin: 0 10px;
-    font-size: 1.2em;
+    background-color: rgb(0, 191, 255);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
+    padding: 20px;
+    margin: 15px auto;
+    max-width: 500px;
+    transition: transform 0.3s
+    ease-in-out;
+}
+.lista-servicios li a :hover{
+    transform: translateY(-5px);
 }
 .lista-servicios li a{
     text-decoration: none;
     color: #333;
+    font-weight: bold;
 }
 .lista-servicios li a :hover{
     color: blue;
@@ -53,4 +64,19 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+.imagenes-servicios {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin: 30px 0;
+  margin-bottom: 100px;
+}
+
+.imagenes-servicios img {
+  width: 350px;
+  height: auto;
+  border-radius: 100px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
