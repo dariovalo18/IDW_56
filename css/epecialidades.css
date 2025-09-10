@@ -5,14 +5,22 @@ body {
     text-align: center;
 }
 header {
+    display: flex;
+    align-items: center;
     background-color: #4CAF50;
-    color: white;
-    padding: 20px 0;
+    padding: 10px;
 }
+#logo {
+    width: 80px; 
+    margin-right: 20px;
+}
+
 main {
     padding: 20px;
 }
-
+nav {
+    margin-left: auto;
+}
 nav ul li{
     margin: 0 15px;
     color: white;
