@@ -15,10 +15,11 @@ main {
 .lista-servicios{
     list-style-type: none;
     padding: 0;
+    margin-bottom: 50px;
     text-align: center;
 }
 .lista-servicios li{
-    background-color: blue;
+    background-color: rgb(0, 191, 255);
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
     padding: 20px;
@@ -63,4 +64,19 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+.imagenes-servicios {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin: 30px 0;
+  margin-bottom: 100px;
+}
+
+.imagenes-servicios img {
+  width: 350px;
+  height: auto;
+  border-radius: 100px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
