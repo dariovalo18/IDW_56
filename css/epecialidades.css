@@ -69,3 +69,42 @@ footer {
     background-color: #9cec95;
     transition: 0.3s;
 }
+
+
+.medicos-obras {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.medico-tarjeta{
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 220px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.medico-tarjeta img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.medicos-caja{
+    display: flex;         
+    flex-wrap: wrap;       
+    justify-content: center; 
+    gap: 20px;         
+}
+
+
+.obras-sociales img {
+     width: 40px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 5px;
+    transition: transform 0.2s;
+}
