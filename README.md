@@ -1,3 +1,4 @@
+# IDW_56
 # TP1-IDW
 Trabajo practivo n1 de IDW 2025
 
@@ -12,4 +13,4 @@ Primera parte del trabajo integrador
 * Valentin Suarez
 
 
-# Link a repositorio: https://github.com/dariovalo18/TP1-IDW
+# Link a repositorio: https://github.com/dariovalo18/IDW_56
