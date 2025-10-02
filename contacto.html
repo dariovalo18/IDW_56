@@ -6,8 +6,9 @@
   <meta name="description" content="Clínica IDW S.A. - Contacto y consultas.">
   <title>IDW S.A. - Clínica (Contacto)</title>
   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/oscuroclaro.css"  rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    </head>
+  </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #198754;">
@@ -27,6 +28,16 @@
                         <li class="nav-item"><a class="nav-link text-white" href="especialidades.html">Especialidades</a>
                         </li>
                         <li class="nav-item"><a class="nav-link text-white" href="contacto.html">Contacto</a></li>
+                        <li class="nav-item">
+                          <button id="themeToggle" class="btn btn-outline-light ms-3" aria-label="Alternar modo claro/oscuro">
+                            <span id="themeIcon">
+                              <!-- Icono por defecto: luna -->
+                              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-moon" viewBox="0 0 16 16">
+                                <path d="M6 0a6 6 0 0 0 0 12c3.314 0 6-2.686 6-6a6 6 0 0 0-6-6zm0 1a5 5 0 0 1 0 10A5 5 0 0 1 6 1z"/>
+                              </svg>
+                            </span>
+                          </button>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -105,5 +116,9 @@
     <p class="mb-0">&copy; 2025 IDW S.A. Todos los derechos reservados.</p>
   </footer>
   <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="js/oscuroclaro.js"></script>
+    
+  
 </body>
 </html>
