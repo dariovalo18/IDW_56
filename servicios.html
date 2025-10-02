@@ -1,46 +1,113 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
+<head>
+    <meta charset="UTF-8">     <!-- Para caracteres especiales -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   <!-- Para dispositivos moviles -->
     <title>IDW S.A. - Clínica</title>
-    <head>       
-        <link rel="stylesheet" href="css/index.css">
-    </head>
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">      <!-- Para traer bootstrap -->
+</head>
+
 <body>
-        <header>
-        <img src="img/logo.png" alt="Logo de la clínica" id="logo">
-        
-        <nav>
-            <ul id="menu">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="servicios.html">Servicios</a></li>
-                <li><a href="especialidades.html">Especialidades</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-            </ul>
-            </nav>
-
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #198754;">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <img src="img/logo.png" alt="Logo de la clínica" id="logo" width="50" class="me-2">
+                    <span>IDW S.A.</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+                    aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link text-white" href="index.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="servicios.html">Servicios</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="especialidades.html">Especialidades</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link text-white" href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
-    <main>
-       
-
+    <main class="container my-4">
         <section>
-            <h2>Servicios de la empresas</h2>
-            <ul class="lista-servicios">
-                <li>Atencion especializada</li>
-                <li>Servicios de urgencia</li>
-                <li>Atencion preventiva</li>
-                <li>Facilidades de pago y obras sociales</li>
-                <li>Servicios de diagnostico</li>
-            </ul>
-            <div class="imagenes-servicios">
-                <img src="img/Diagnostico.jpg" alt="Diagnóstico">
-                <img src="img/Urgencias.jpg" alt="Urgencias">
-                <img src="img/Diagnostico.jpg" alt="Diagnóstico">
+            <h2 class="mb-4 text-center">Servicios de la empresa</h2>
+            <div class="row g-3 text-center">
+                <div class="col-md-4">
+                    <a href="#" class="text-decoration-none">
+                        <div class="card bg-success text-white list-group-item-action">
+                            <div class="card-body">
+                                <h5 class="card-text">Atención especializada</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-4">
+                    <a href="#" class="text-decoration-none">
+                        <div class="card bg-success text-white list-group-item-action">
+                            <div class="card-body">
+                                <h5 class="card-text">Servicios de urgencia</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-4">
+                    <a href="#" class="text-decoration-none">
+                        <div class="card bg-success text-white list-group-item-action">
+                            <div class="card-body">
+                                <h5 class="card-text">Atención preventiva</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6">
+                    <a href="#" class="text-decoration-none">
+                        <div class="card bg-success text-white list-group-item-action">
+                            <div class="card-body">
+                                <h5 class="card-text">Facilidades de pago y obras sociales</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6">
+                    <a href="#" class="text-decoration-none">
+                        <div class="card bg-success text-white list-group-item-action">
+                            <div class="card-body">
+                                <h5 class="card-text">Servicios de diagnóstico</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Imágenes de servicios en grid -->
+            <div class="row g-4 mt-5">
+                <div class="col-md-4">
+                    <img src="img/Diagnostico.jpg" class="img-fluid rounded" alt="Diagnóstico">
+                </div>
+                <div class="col-md-4">
+                    <img src="img/Urgencias.jpg" class="img-fluid rounded" alt="Urgencias">
+                </div>
+                <div class="col-md-4">
+                    <img src="img/Diagnostico.jpg" class="img-fluid rounded" alt="Diagnóstico">
+                </div>
             </div>
         </section>
 
     </main>
-    <footer>
-        <p>&copy; 2025 IDW S.A. Todos los derechos reservados.</p>
+     <!-- Footer -->
+    <footer class="bg-light text-center py-3 mt-5">
+        <p class="mb-0">&copy; 2025 IDW S.A. Todos los derechos reservados.</p>
     </footer>
+        <!-- Bootstrap 5.3 JS --> 
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
