@@ -7,6 +7,7 @@
     <title>IDW S.A. - Clínica</title>
     <!-- Bootstrap 5.3 CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">      <!-- Para traer bootstrap -->
+  <link href="css/oscuroclaro.css"  rel="stylesheet">
 </head>
 
 <body>
@@ -23,11 +24,21 @@
                 </button>
                 <div class="collapse navbar-collapse" id="menu">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link text-white" href="index.html">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="servicios.html">Servicios</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="especialidades.html">Especialidades</a>
-                        </li>
-                        <li class="nav-item"><a class="nav-link text-white" href="contacto.html">Contacto</a></li>
+                                                <li class="nav-item"><a class="nav-link text-white" href="index.html">Inicio</a></li>
+                                                <li class="nav-item"><a class="nav-link text-white" href="servicios.html">Servicios</a></li>
+                                                <li class="nav-item"><a class="nav-link text-white" href="especialidades.html">Especialidades</a>
+                                                </li>
+                                                <li class="nav-item"><a class="nav-link text-white" href="contacto.html">Contacto</a></li>
+                                                <li class="nav-item">
+                                                    <button id="themeToggle" class="btn btn-outline-light ms-3" aria-label="Alternar modo claro/oscuro">
+                                                        <span id="themeIcon">
+                                                            <!-- Icono por defecto: luna -->
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-moon" viewBox="0 0 16 16">
+                                                                <path d="M6 0a6 6 0 0 0 0 12c3.314 0 6-2.686 6-6a6 6 0 0 0-6-6zm0 1a5 5 0 0 1 0 10A5 5 0 0 1 6 1z"/>
+                                                            </svg>
+                                                        </span>
+                                                    </button>
+                                                </li>
                     </ul>
                 </div>
             </div>
@@ -109,5 +120,6 @@
     </footer>
         <!-- Bootstrap 5.3 JS --> 
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="js/oscuroclaro.js"></script>
 </body>
 </html>
