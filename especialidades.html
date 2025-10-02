@@ -102,7 +102,7 @@
         </div>
     </div>
 
-    <!-- Carrusel de imagenes de obras sociales -->
+    <!-- Grid de Obras sociales -->
    <section id="obras-sociales">
     <h2 class="mt-5 mb-4 text-center">Obras Sociales de la Empresa</h2>
 
@@ -161,6 +161,8 @@
     </footer>
 
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Este JS recorre los radios y muestra solo las tarjetas que coinciden con la especialidad que seleccionaste  -->
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         const radios = document.querySelectorAll('input[name="especialidad"]');
@@ -170,11 +172,11 @@
             radio.addEventListener('change', () => {
                 const seleccionado = document.querySelector('input[name="especialidad"]:checked').value;
 
-                tarjetas.forEach(tarjeta => {
+                tarjetas.forEach(tarjeta => { // si el valor que se asigno en seleccionado es "" es decir el mismo que "todas" o alguno seleccionado
                 if (!seleccionado || tarjeta.dataset.especialidad === seleccionado) {
-                    tarjeta.style.display = ''; 
+                    tarjeta.style.display = '';  // las muestra
                 } else {
-                    tarjeta.style.display = 'none'; 
+                    tarjeta.style.display = 'none'; // las oculta
                 }
                 });
             });
