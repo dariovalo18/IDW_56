@@ -1,83 +1,109 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Clínica IDW S.A. - Contacto y consultas.">
-        <title>IDW S.A. - Clínica</title>       
-        <link rel="stylesheet" href="css/index.css">
-        <link rel="stylesheet" href="css/contacto.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Clínica IDW S.A. - Contacto y consultas.">
+  <title>IDW S.A. - Clínica (Contacto)</title>
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     </head>
 <body>
     <header>
-        <img src="img/logo.png" alt="Logo de la clínica" id="logo">
-        
-        <nav>
-            <ul id="menu">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="servicios.html">Servicios</a></li>
-                <li><a href="especialidades.html">Especialidades</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-            </ul>
-            </nav>
-
-    </header>
-    <main style="padding-bottom:70px;">
-        <section id="contacto">
-            <h2>Contacto</h2>
-            <h3>Gracias por contactarse con Clínica IDW</h3>
-            <div style="max-width:1100px; margin:0 auto;">
-                <div class="contact-layout">
-                    <div class="contact-info">
-                        <address>
-                            <p><strong>Dirección:</strong> San Martin 3115</p>
-                            <p><strong>Teléfono:</strong> <a href="tel:+5492477558899">+54 9 2477 558899</a></p>               
-                            <p><strong>Email de contacto:</strong> <a href="mailto:info@clinica.com">info@clinica.com</a></p>
-                            <p><strong>Horario:</strong> Abierto las 24hs</p>                
-                        </address>
-                        <div class="social-icons">
-                            <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-                            <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="https://wa.me/5492477558899" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-                        </div>
-                        <h3>Ubicación</h3>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.0846987043114!2d-60.60224912537727!3d-33.88747242002432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b8355c83ad5c9d%3A0x62c1d96363e199d9!2sSan%20Mart%C3%ADn%203115%2C%20Pergamino%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1757428326497!5m2!1ses!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                    <div class="contact-form">
-                        <form action="/contact" method="post">
-                            <h3>Déjenos su mensaje y le responderemos a la brevedad</h3>
-                            <fieldset>                                
-                                <legend>Enviar consulta</legend>
-
-                                <label for="name">Nombre completo</label><br>
-                                <input id="name" name="name" type="text" required><br><br>
-
-                                <label for="name">Documento</label><br>
-                                <input id="name" name="name" type="text" required><br><br>
-
-                                <label for="name">Obra Social</label><br>
-                                <input id="name" name="name" type="text" required><br><br>
-
-                                <label for="email">Correo electrónico</label><br>
-                                <input id="email" name="email" type="email" required><br><br>
-
-                                <label for="phone">Teléfono</label><br>
-                                <input id="phone" name="phone" type="tel"><br><br>
-
-                                <label for="message">Mensaje</label><br>
-                                <textarea id="message" name="message" rows="5" required></textarea><br><br>
-
-                                <button type="submit">Enviar</button>
-                            </fieldset>
-                        </form>
-                    </div>
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #198754;">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <img src="img/logo.png" alt="Logo de la clínica" id="logo" width="50" class="me-2">
+                    <span>IDW S.A.</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+                    aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link text-white" href="index.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="servicios.html">Servicios</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="especialidades.html">Especialidades</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link text-white" href="contacto.html">Contacto</a></li>
+                    </ul>
                 </div>
             </div>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2025 IDW S.A. Todos los derechos reservados.</p>
-    </footer>
+        </nav>
+    </header>
+<main class="container my-5 flex-grow-1">
+    <section id="contacto">
+      <h2 class="text-center mb-1">Contacto</h2>
+      <h3 class="text-center text-muted mb-4">Gracias por contactarse con Clínica IDW</h3>
+
+      <div class="row g-4">
+        <div class="col-12 col-md-6">
+          <div class="card h-100">
+            <div class="card-body">
+              <h4 class="card-title">Información de contacto</h4>
+              <address class="mb-3">
+                <p><strong>Dirección:</strong> San Martín 3115</p>
+                <p><strong>Teléfono:</strong> <a href="tel:+5492477558899" class="text-decoration-none">+54 9 2477 558899</a></p>
+                <p><strong>Email:</strong> <a href="mailto:info@clinica.com" class="text-decoration-none">info@clinica.com</a></p>
+                <p><strong>Horario:</strong> Abierto las 24hs</p>
+              </address>
+
+              <div class="mb-3">
+                <a href="https://www.facebook.com/" target="_blank" class="btn btn-outline-primary rounded-circle me-2"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instagram.com/" target="_blank" class="btn btn-outline-danger rounded-circle me-2"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://wa.me/5492477558899" target="_blank" class="btn btn-outline-success rounded-circle"><i class="fa-brands fa-whatsapp"></i></a>
+              </div>
+
+              <h5 class="mt-4">Ubicación</h5>
+              <div class="ratio ratio-16x9">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.0846987043114!2d-60.60224912537727!3d-33.88747242002432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b8355c83ad5c9d%3A0x62c1d96363e199d9!2sSan%20Mart%C3%ADn%203115%2C%20Pergamino%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1757428326497!5m2!1ses!2sar"
+                  style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card h-100">
+            <div class="card-body">
+              <h4 class="card-title">Déjenos su mensaje y le responderemos a la brevedad</h4>
+              <form action="/contact" method="post">
+                <div class="mb-3">
+                  <label for="full_name" class="form-label">Nombre completo</label>
+                  <input type="text" id="full_name" name="full_name" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                  <label for="documento" class="form-label">Documento</label>
+                  <input type="text" id="documento" name="documento" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                  <label for="obra_social" class="form-label">Obra Social</label>
+                  <input type="text" id="obra_social" name="obra_social" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Correo electrónico</label>
+                  <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                  <label for="phone" class="form-label">Teléfono</label>
+                  <input type="tel" id="phone" name="phone" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label for="message" class="form-label">Mensaje</label>
+                  <textarea id="message" name="message" rows="5" class="form-control" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-success">Enviar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="bg-light text-center py-3 mt-auto">
+    <p class="mb-0">&copy; 2025 IDW S.A. Todos los derechos reservados.</p>
+  </footer>
+  <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
