@@ -1,3 +1,4 @@
+
 // inicia localStorage con los datos que estan definidos aca
 function inicializarMedicos() {
     // chequea si ya hay algo guardado
@@ -77,6 +78,46 @@ function configurarFiltros() {
             });
         });
     });
+}
+
+// agrega un medico nuevo a la lista
+function agregarMedico(nuevoMedico) {
+    const datos = obtenerMedicos();
+    nuevoMedico.id = datos.medicos.length + 1;
+    datos.medicos.push(nuevoMedico);
+    guardarMedicos(datos);
+    
+    // solo renderizar si estamos en la pagina de especialidades
+    if (document.querySelector('.row.justify-content-center')) {
+        renderizarMedicos();
+    }
+}
+
+// borra un medico por su numero de ID
+function eliminarMedico(id) {
+    const datos = obtenerMedicos();
+    datos.medicos = datos.medicos.filter(medico => medico.id !== id);
+    guardarMedicos(datos);
+    
+    // solo renderizar si estamos en la pagina de especialidades
+    if (document.querySelector('.row.justify-content-center')) {
+        renderizarMedicos();
+    }
+}
+
+// cambia los datos de un medico que ya existe
+function actualizarMedico(id, datosActualizados) {
+    const datos = obtenerMedicos();
+    const index = datos.medicos.findIndex(medico => medico.id === id);
+    if (index !== -1) {
+        datos.medicos[index] = { ...datos.medicos[index], ...datosActualizados };
+        guardarMedicos(datos);
+        
+        // solo renderizar si estamos en la pagina de especialidades
+        if (document.querySelector('.row.justify-content-center')) {
+            renderizarMedicos();
+        }
+    }
 }
 
 // esto se ejecuta cuando se carga la pagina
