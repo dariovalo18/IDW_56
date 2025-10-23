@@ -78,3 +78,9 @@ function configurarFiltros() {
         });
     });
 }
+
+// esto se ejecuta cuando se carga la pagina
+document.addEventListener('DOMContentLoaded', () => {
+    inicializarMedicos();
+    renderizarMedicos();
+});
