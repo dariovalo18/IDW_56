@@ -1,6 +1,6 @@
 # IDW_56
 # TP1-IDW
-Trabajo practivo n1 de IDW 2025
+Trabajo practivo parte 3 de IDW 2025
 
 Primera parte del trabajo integrador
 
