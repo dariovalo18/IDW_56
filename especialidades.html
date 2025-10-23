@@ -63,53 +63,10 @@
         </div>
     </div>
 
-    <!-- Nueva implementacion de tarjetas -->
+    <!-- Contenedor de tarjetas que se carga dinámicamente -->
     <div class="mb-2 container">
         <div class="row justify-content-center">
-            <div class="col-md-3 d-flex justify-content-center">
-              <div class="card text-center mb-3" style="width: 18rem;" data-especialidad="cardiologia">
-                <img src="img/cardiologa-gomez.jpeg" class="card-img-top" alt="Dr. Gómez">
-                <div class="card-body">
-                  <h5 class="card-title">Dr. Analía Gómez</h5>
-                  <p class="card-text">Cardiología</p>
-                  <a href="#" class="btn btn-primary">Agendar cita</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-3 d-flex justify-content-center">
-              <div class="card text-center mb-3" style="width: 18rem;" data-especialidad="pediatria">
-                <img src="img/Pediatra-Lopez.jpeg" class="card-img-top" alt="Dr. Carlos Lopez">
-                <div class="card-body">
-                  <h5 class="card-title">Dr. Carlos López</h5>
-                  <p class="card-text">Pediatría</p>
-                  <a href="#" class="btn btn-primary">Agendar cita</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-3 d-flex justify-content-center">
-              <div class="card text-center mb-3" style="width: 18rem;" data-especialidad="neurologia">
-                <img src="img/Pediatra-Rodriguez.jpeg" class="card-img-top" alt="Dr. Mariana Rodriguez">
-                <div class="card-body">
-                  <h5 class="card-title">Dr. Mariana Rodriguez</h5>
-                  <p class="card-text">Neurología</p>
-                  <a href="#" class="btn btn-primary">Agendar cita</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-3 d-flex justify-content-center">
-              <div class="card text-center mb-3" style="width: 18rem;" data-especialidad="dermatologia">
-                <img src="img/Pediatra-Lopez.jpeg" class="card-img-top" alt="Dr. Ernesto Suarez">
-                <div class="card-body">
-                  <h5 class="card-title">Dr. Ernesto Suarez</h5>
-                  <p class="card-text">Dermatologia</p>
-                  <a href="#" class="btn btn-primary">Agendar cita</a>
-                </div>
-              </div>
-            </div>
-
+            <!-- Las tarjetas se cargarán aquí dinámicamente desde localStorage -->
         </div>
     </div>
 
@@ -172,31 +129,9 @@
     </footer>
 
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-
+    <script src="js/datos-iniciales.js"></script>
+    <script src="js/medicos-data.js"></script>
     <script src="js/oscuroclaro.js"></script>
-    <!-- Este JS recorre los radios y muestra solo las tarjetas que coinciden con la especialidad que seleccionaste  -->
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const radios = document.querySelectorAll('input[name="especialidad"]');
-        const tarjetas = document.querySelectorAll('.card[data-especialidad]');
-
-        radios.forEach(radio => {
-            radio.addEventListener('change', () => {
-                const seleccionado = document.querySelector('input[name="especialidad"]:checked').value;
-
-                tarjetas.forEach(tarjeta => { // si el valor que se asigno en seleccionado es "" es decir el mismo que "todas" o alguno seleccionado
-                if (!seleccionado || tarjeta.dataset.especialidad === seleccionado) {
-                    tarjeta.style.display = '';  // las muestra
-                } else {
-                    tarjeta.style.display = 'none'; // las oculta
-                }
-                });
-            });
-        });
-    });
-    </script>
-
-
 
 </body>
 </html>
