@@ -4,7 +4,8 @@ function inicializarMedicos() {
     // chequea si ya hay algo guardado
     const medicosGuardados = localStorage.getItem('medicosData');
     
-    if (!medicosGuardados) {
+    //si el localstorage esta vacio o tiene un array de medicos vacio
+    if (!medicosGuardados || medicosGuardados === '{"medicos":[]}') {
         // si no hay nada, guarda lo que tenemos aca
         localStorage.setItem('medicosData', JSON.stringify(medicosData));
         console.log('No hay datos en localStorage, cargamos datos por defecto.');
