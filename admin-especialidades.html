@@ -2,15 +2,13 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IDW S.A. - Administrar Médicos</title>
+    <title>IDW S.A. - Administrar Especialidades</title>
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/oscuroclaro.css" rel="stylesheet">
-    <link href="css/adminMedicos.css" rel="stylesheet">
-    <link href="css/menuAdmin.css" rel="stylesheet">
+    <link href="css/adminMedicos.css" rel="stylesheet"> <link href="css/menuAdmin.css" rel="stylesheet">
 
 </head>
 <body>
-    <!-- header del admin -->
     <header class="admin-header">
         <div class="container">
             <div class="row align-items-center">
@@ -33,17 +31,16 @@
     </header>
 
     <main class="container">
-        <!-- navegacion del admin -->
         <div class="row mt-4 mb-4">
             <div class="col-12">
                 <ul class="nav nav-tabs nav-fill border-0" role="tablist" style="background: linear-gradient(135deg, #198754 0%, #0d5c3f 100%); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active text-white fw-bold" href="admin-medicos.html" role="tab" style="padding: 1rem; border: none;">
+                        <a class="nav-link text-white fw-bold" href="admin-medicos.html" role="tab" style="padding: 1rem; border: none;">
                             <i class="bi bi-stethoscope me-2"></i>Médicos
                         </a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link text-white fw-bold" href="admin-especialidades.html" role="tab" style="padding: 1rem; border: none;">
+                        <a class="nav-link active text-white fw-bold" href="admin-especialidades.html" role="tab" style="padding: 1rem; border: none;">
                             <i class="bi bi-card-list me-2"></i>Especialidades
                         </a>
                     </li>
@@ -61,89 +58,55 @@
             </div>
         </div>
 
-        <!-- panel de control -->
         <div class="row mt-4">
             <div class="col-12">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h3>Gestión de Médicos</h3>
+                    <h3>Gestión de Especialidades</h3>
                     <button class="btn btn-success" onclick="abrirModalAgregar()">
-                        <i class="bi bi-plus-circle"></i> Añadir Médico
+                        <i class="bi bi-plus-circle"></i> Añadir Especialidad
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- tabla de medicos -->
         <div class="table-container">
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead class="table-success">
                         <tr>
                             <th>ID</th>
-                            <th>Foto</th>
                             <th>Nombre</th>
-                            <th>Especialidad</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody id="tablaMedicos">
-                        <!-- aqui se cargan los medicos -->
-                    </tbody>
+                    <tbody id="tablaEspecialidades">
+                        </tbody>
                 </table>
             </div>
         </div>
     </main>
 
-    <!-- Modal para agregar/editar medico -->
-    <div class="modal fade" id="modalMedico" tabindex="-1">
+    <div class="modal fade" id="modalEspecialidad" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitulo">Agregar Médico</h5>
+                    <h5 class="modal-title" id="modalTitulo">Agregar Especialidad</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="formMedico">
-                        <input type="hidden" id="medicoId" name="id">
+                    <form id="formEspecialidad">
+                        <input type="hidden" id="especialidadId" name="id">
                         
                         <div class="mb-3">
-                            <label for="medicoNombre" class="form-label">Nombre completo</label>
-                            <input type="text" class="form-control" id="medicoNombre" name="nombre" required>
+                            <label for="especialidadNombre" class="form-label">Nombre de la Especialidad</label>
+                            <input type="text" class="form-control" id="especialidadNombre" name="nombre" required>
                         </div>
                         
-                        <div class="mb-3">
-                            <label for="medicoEspecialidad" class="form-label">Especialidad</label>
-                            <select class="form-select" id="medicoEspecialidad" name="especialidad" required>
-                                <option value="">Selecciona una especialidad</option>
-                                <option value="cardiologia">Cardiología</option>
-                                <option value="pediatria">Pediatría</option>
-                                <option value="neurologia">Neurología</option>
-                                <option value="dermatologia">Dermatología</option>
-                            </select>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="medicoImagen" class="form-label">URL de la imagen</label>
-                            <input type="url" class="form-control" id="medicoImagen" name="imagen" required>
-                            <div class="form-text">Ingresa la URL de la foto del médico</div>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="medicoAlt" class="form-label">Descripción de la imagen</label>
-                            <input type="text" class="form-control" id="medicoAlt" name="alt" required>
-                            <div class="form-text">Texto alternativo para la imagen</div>
-                        </div>
-
-                        <!-- vista previa de la imagen -->
-                        <div class="mb-3" id="previewContainer" style="display: none;">
-                            <label class="form-label">Vista previa:</label><br>
-                            <img id="previewImg" class="preview-img" alt="Vista previa">
-                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-success" onclick="guardarMedico()">
+                    <button type="button" class="btn btn-success" onclick="guardarEspecialidad()">
                         <span id="btnGuardarTexto">Guardar</span>
                         <span id="btnGuardarSpinner" class="spinner-border spinner-border-sm d-none ms-2"></span>
                     </button>
@@ -152,7 +115,6 @@
         </div>
     </div>
 
-    <!-- Modal de confirmacion para eliminar -->
     <div class="modal fade" id="modalEliminar" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -161,7 +123,7 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <p>¿Estás seguro que quieres eliminar al médico <strong id="medicoEliminarNombre"></strong>?</p>
+                    <p>¿Estás seguro que quieres eliminar la especialidad <strong id="especialidadEliminarNombre"></strong>?</p>
                     <p class="text-muted">Esta acción no se puede deshacer.</p>
                 </div>
                 <div class="modal-footer">
@@ -176,9 +138,6 @@
 
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="js/login-user.js"></script>
-    <script src="js/datos-iniciales.js"></script>
-    <script src="js/medicos-data.js"></script>
-    <script src="js/admin-medicos.js"></script>
-    <script src="js/verificacion-login.js"></script>
+    <script src="js/datos-iniciales.js"></script> <script src="js/especialidades-data.js"></script> <script src="js/admin-especialidades.js"></script> <script src="js/verificacion-login.js"></script>
 </body>
 </html>
