@@ -7,7 +7,7 @@ let modalEliminar = null;
 document.addEventListener('DOMContentLoaded', () => {
     modalMedico = new bootstrap.Modal(document.getElementById('modalMedico'));
     modalEliminar = new bootstrap.Modal(document.getElementById('modalEliminar'));
-    
+
     // configurar vista previa de imagen
     document.getElementById('medicoImagen').addEventListener('input', mostrarVistaPrevia);
 });
@@ -16,9 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
 function cargarTablaMedicos() {
     const datos = obtenerMedicos();
     const tbody = document.getElementById('tablaMedicos');
-    
+
     tbody.innerHTML = '';
-    
+
     if (datos.medicos.length === 0) {
         tbody.innerHTML = `
             <tr>
@@ -29,7 +29,7 @@ function cargarTablaMedicos() {
         `;
         return;
     }
-    
+
     datos.medicos.forEach(medico => {
         const fila = document.createElement('tr');
         fila.innerHTML = `
@@ -66,44 +66,44 @@ function abrirModalAgregar() {
 function abrirModalEditar(id) {
     const datos = obtenerMedicos();
     const medico = datos.medicos.find(m => m.id === id);
-    
+
     if (!medico) {
         alert('No se encontro el medico');
         return;
     }
-    
+
     medicoEditandoId = id;
     document.getElementById('modalTitulo').textContent = 'Editar Médico';
-    
+
     // llenar el formulario con los datos actuales
     document.getElementById('medicoId').value = medico.id;
     document.getElementById('medicoNombre').value = medico.nombre;
     document.getElementById('medicoEspecialidad').value = medico.especialidad;
     document.getElementById('medicoImagen').value = medico.imagen;
     document.getElementById('medicoAlt').value = medico.alt;
-    
+
     // mostrar vista previa
     mostrarVistaPrevia();
-    
+
     modalMedico.show();
 }
 
 // guarda el medico (nuevo o editado)
 function guardarMedico() {
     const form = document.getElementById('formMedico');
-    
+
     // validar formulario
     if (!form.checkValidity()) {
         form.reportValidity();
         return;
     }
-    
+
     // mostrar loading
     const btnTexto = document.getElementById('btnGuardarTexto');
     const btnSpinner = document.getElementById('btnGuardarSpinner');
     btnTexto.textContent = 'Guardando...';
     btnSpinner.classList.remove('d-none');
-    
+
     // obtener datos del formulario
     const datosFormulario = new FormData(form);
     const nuevoMedico = {
@@ -112,7 +112,7 @@ function guardarMedico() {
         imagen: datosFormulario.get('imagen'),
         alt: datosFormulario.get('alt')
     };
-    
+
     // simular delay para el loading
     setTimeout(() => {
         try {
@@ -125,11 +125,11 @@ function guardarMedico() {
                 agregarMedico(nuevoMedico);
                 mostrarNotificacion('Médico agregado correctamente', 'success');
             }
-            
+
             // recargar tabla y cerrar modal
             cargarTablaMedicos();
             modalMedico.hide();
-            
+
         } catch (error) {
             mostrarNotificacion('Error al guardar el médico', 'error');
         } finally {
@@ -144,12 +144,12 @@ function guardarMedico() {
 function abrirModalEliminar(id) {
     const datos = obtenerMedicos();
     const medico = datos.medicos.find(m => m.id === id);
-    
+
     if (!medico) {
         alert('No se encontro el medico');
         return;
     }
-    
+
     medicoEditandoId = id;
     document.getElementById('medicoEliminarNombre').textContent = medico.nombre;
     modalEliminar.show();
@@ -160,7 +160,7 @@ function confirmarEliminar() {
     if (!medicoEditandoId) {
         return;
     }
-    
+
     try {
         eliminarMedico(medicoEditandoId);
         cargarTablaMedicos();
@@ -169,7 +169,7 @@ function confirmarEliminar() {
     } catch (error) {
         mostrarNotificacion('Error al eliminar el médico', 'error');
     }
-    
+
     medicoEditandoId = null;
 }
 
@@ -178,10 +178,10 @@ function mostrarVistaPrevia() {
     const urlImagen = document.getElementById('medicoImagen').value;
     const previewContainer = document.getElementById('previewContainer');
     const previewImg = document.getElementById('previewImg');
-    
+
     if (urlImagen) {
         previewImg.src = urlImagen;
-        previewImg.onerror = function() {
+        previewImg.onerror = function () {
             this.src = 'img/default-doctor.jpg';
             this.alt = 'Imagen no válida';
         };
@@ -195,10 +195,10 @@ function mostrarVistaPrevia() {
 function mostrarNotificacion(mensaje, tipo = 'success') {
     // crear el toast
     const toastContainer = document.getElementById('toastContainer') || crearContenedorToast();
-    
+
     const toastId = 'toast-' + Date.now();
     const bgClass = tipo === 'success' ? 'bg-success' : 'bg-danger';
-    
+
     const toastHtml = `
         <div id="${toastId}" class="toast ${bgClass} text-white" role="alert">
             <div class="toast-body">
@@ -206,14 +206,14 @@ function mostrarNotificacion(mensaje, tipo = 'success') {
             </div>
         </div>
     `;
-    
+
     toastContainer.insertAdjacentHTML('beforeend', toastHtml);
-    
+
     const toast = new bootstrap.Toast(document.getElementById(toastId));
     toast.show();
-    
+
     // remover el toast despues de que se oculte
-    document.getElementById(toastId).addEventListener('hidden.bs.toast', function() {
+    document.getElementById(toastId).addEventListener('hidden.bs.toast', function () {
         this.remove();
     });
 }

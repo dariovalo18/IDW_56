@@ -3,7 +3,7 @@
 function inicializarMedicos() {
     // chequea si ya hay algo guardado
     const medicosGuardados = localStorage.getItem('medicosData');
-    
+
     //si el localstorage esta vacio o tiene un array de medicos vacio
     if (!medicosGuardados || medicosGuardados === '{"medicos":[]}') {
         // si no hay nada, guarda lo que tenemos aca
@@ -29,12 +29,12 @@ function guardarMedicos(datos) {
 function renderizarMedicos() {
     const datos = obtenerMedicos();
     const container = document.querySelector('.row.justify-content-center');
-    
+
     // si no encuentra el contenedor, no hacer nada (estamos en otra pagina)
     if (!container) {
         return;
     }
-    
+
     // borra lo que habia antes
     container.innerHTML = '';
 
@@ -46,7 +46,7 @@ function renderizarMedicos() {
         // usamos estas comillas raras para meter html de varias lineas
         tarjeta.innerHTML = `
             <div class="card text-center mb-3" style="width: 18rem;" data-especialidad="${medico.especialidad}">
-                <img src="${medico.imagen}" class="card-img-top" alt="${medico.alt}">
+                <img src="${medico.imagen}" class="card-img-top" alt="${medico.alt}"  onerror="this.src='img/default-doctor.jpg'; this.alt='Imagen no disponible';" >
                 <div class="card-body">
                     <h5 class="card-title">${medico.nombre}</h5>
                     <p class="card-text">${medico.especialidad.charAt(0).toUpperCase() + medico.especialidad.slice(1)}</p>
@@ -56,7 +56,7 @@ function renderizarMedicos() {
         `;
         container.appendChild(tarjeta);
     });
-    
+
     // arranca los filtros despues de crear las tarjetas
     configurarFiltros();
 }
@@ -64,13 +64,13 @@ function renderizarMedicos() {
 // hace que funcionen los botones de filtro
 function configurarFiltros() {
     const radios = document.querySelectorAll('input[name="especialidad"]');
-    
+
     radios.forEach(radio => {
         radio.addEventListener('change', () => {
             const seleccionado = document.querySelector('input[name="especialidad"]:checked').value;
             const tarjetas = document.querySelectorAll('.card[data-especialidad]');
 
-            tarjetas.forEach(tarjeta => { 
+            tarjetas.forEach(tarjeta => {
                 if (!seleccionado || tarjeta.dataset.especialidad === seleccionado) {
                     tarjeta.style.display = '';  // las muestra
                 } else {
@@ -87,7 +87,7 @@ function agregarMedico(nuevoMedico) {
     nuevoMedico.id = datos.medicos.length + 1;
     datos.medicos.push(nuevoMedico);
     guardarMedicos(datos);
-    
+
     // solo renderizar si estamos en la pagina de especialidades
     if (document.querySelector('.row.justify-content-center')) {
         renderizarMedicos();
@@ -99,7 +99,7 @@ function eliminarMedico(id) {
     const datos = obtenerMedicos();
     datos.medicos = datos.medicos.filter(medico => medico.id !== id);
     guardarMedicos(datos);
-    
+
     // solo renderizar si estamos en la pagina de especialidades
     if (document.querySelector('.row.justify-content-center')) {
         renderizarMedicos();
@@ -113,7 +113,7 @@ function actualizarMedico(id, datosActualizados) {
     if (index !== -1) {
         datos.medicos[index] = { ...datos.medicos[index], ...datosActualizados };
         guardarMedicos(datos);
-        
+
         // solo renderizar si estamos en la pagina de especialidades
         if (document.querySelector('.row.justify-content-center')) {
             renderizarMedicos();

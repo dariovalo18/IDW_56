@@ -5,40 +5,8 @@
     <title>IDW S.A. - Administrar Médicos</title>
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/oscuroclaro.css" rel="stylesheet">
-    <style>
-        .admin-header {
-            background: linear-gradient(135deg, #198754, #20c997);
-            color: white;
-            padding: 1rem 0;
-        }
-        .table-container {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            padding: 1.5rem;
-            margin-top: 2rem;
-        }
-        .btn-action {
-            padding: 0.25rem 0.5rem;
-            font-size: 0.875rem;
-            margin: 0 0.2rem;
-        }
-        .modal-header {
-            background: #198754;
-            color: white;
-        }
-        .preview-img {
-            max-width: 100px;
-            max-height: 100px;
-            object-fit: cover;
-            border-radius: 5px;
-        }
-        .user-info {
-            background: rgba(255,255,255,0.1);
-            border-radius: 8px;
-            padding: 0.5rem 1rem;
-        }
-    </style>
+    <link href="css/adminMedicos.css" rel="stylesheet">
+
 </head>
 <body>
     <!-- header del admin -->
@@ -181,21 +149,6 @@
     <script src="js/login-user.js"></script>
     <script src="js/medicos-data.js"></script>
     <script src="js/admin-medicos.js"></script>
-
-    <script>
-        // verificar sesion al cargar la pagina
-        document.addEventListener('DOMContentLoaded', () => {
-            if (!requiereSesion()) {
-                return;
-            }
-            
-            const verificacion = verificarSesion();
-            if (verificacion.activa) {
-                document.getElementById('nombreUsuario').textContent = verificacion.sesion.nombre;
-            }
-            
-            cargarTablaMedicos();
-        });
-    </script>
+    <script src="js/verificacion-login.js"></script>
 </body>
 </html>
