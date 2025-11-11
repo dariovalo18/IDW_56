@@ -1,13 +1,12 @@
-// admin-obras-sociales.js
-// Interacción UI: cargar tabla, abrir modales, guardar/editar/eliminar
+// cargar tabla, abrir modales, guardar/editar/eliminar
 // Usa las funciones definidas en obras-sociales-data.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    inicializarObrasSociales();      // del archivo de datos
-    cargarTablaObrasSociales();      // cargar vista
+    inicializarObrasSociales();      // inicializa
+    cargarTablaObrasSociales();      // carga
 });
 
-// Cargar la tabla (genera filas con ID, Nombre, Porcentaje y Acciones)
+// Cargar la tabla y genera filas
 function cargarTablaObrasSociales() {
     const tabla = document.getElementById('tablaObrasSociales');
     tabla.innerHTML = '';
@@ -28,7 +27,7 @@ function cargarTablaObrasSociales() {
     }
 
     lista.forEach(obra => {
-        // IMPORTANTE: 4 <td> para coincidir con <th> (ID, Nombre, Porcentaje, Acciones)
+        // Se ponen 4 <td> para coincidir con <th>
         tabla.innerHTML += `
             <tr>
                 <td>${obra.id}</td>
@@ -54,7 +53,6 @@ function abrirModalAgregar() {
 }
 
 // Abre modal para editar (carga datos en inputs)
-// NOTA: usa los mismos ids que tu HTML: obraSocialId, obraSocialNombre, obraPorcentaje
 function abrirModalEditar(id) {
     const datos = obtenerObrasSociales();
     const obra = (datos.obrasSociales || []).find(o => o.id === id);
@@ -91,11 +89,11 @@ function guardarObraSocial() {
 
     if (idRaw && idRaw !== '') {
         const id = parseInt(idRaw, 10);
-        // Llama a la función de datos: editarObraSocial(id, nombre, porcentaje)
+        // Llama a la función de datos: editarObraSocial
         editarObraSocial(id, nombre, porcentaje);
         mostrarToast('Obra social actualizada', 'success');
     } else {
-        // Llama a la función de datos: agregarObraSocial({ nombre, porcentaje })
+        // Llama a la función de datos: agregarObraSocial
         agregarObraSocial({ nombre, porcentaje });
         mostrarToast('Obra social agregada', 'success');
     }
@@ -134,7 +132,6 @@ function abrirModalEliminar(id) {
     new bootstrap.Modal(modal).show();
 }
 
-// Helpers - utilidades
 // Mensaje toast simple (usa bootstrap toasts o fallback alert)
 function mostrarToast(mensaje, tipo = 'success') {
     // intenta crear un toast sencillo mediante DOM
@@ -161,10 +158,11 @@ function mostrarToast(mensaje, tipo = 'success') {
     toastEl.addEventListener('hidden.bs.toast', () => toastEl.remove());
 }
 
-// Evita inyección básica al renderizar texto
+// Evita inyección al renderizar texto (Agregado de seguridad)
 function escapeHtml(str) {
     if (typeof str !== 'string') return str;
     return str.replace(/[&<>"']/g, function (m) {
         return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m];
     });
 }
+
