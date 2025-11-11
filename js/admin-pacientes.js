@@ -132,9 +132,9 @@ function toggleDato(datoId) {
     }
 }
 
-// carga y muestra la tabla con usuarios
-async function cargarTablaUsuarios() {
-    const tbody = document.getElementById('tablaAdministradores');
+// carga y muestra la tabla con pacientes
+async function cargarTablaPacientes() {
+    const tbody = document.getElementById('tablaPacientes');
     
     try {
         const usuarios = await obtenerUsuariosAPI();
@@ -143,21 +143,21 @@ async function cargarTablaUsuarios() {
             tbody.innerHTML = `
                 <tr>
                     <td colspan="7" class="text-center text-muted">
-                        No se encontraron administradores
+                        No se encontraron pacientes
                     </td>
                 </tr>
             `;
             return;
         }
 
-        // filtrar solo administradores (role: "admin")
-        const administradores = usuarios.filter(u => u.role === 'admin');
+        // filtrar solo pacientes (role: "user")
+        const pacientes = usuarios.filter(u => u.role === 'user');
 
-        if (administradores.length === 0) {
+        if (pacientes.length === 0) {
             tbody.innerHTML = `
                 <tr>
                     <td colspan="7" class="text-center text-muted">
-                        No hay administradores registrados
+                        No hay pacientes registrados
                     </td>
                 </tr>
             `;
@@ -166,7 +166,7 @@ async function cargarTablaUsuarios() {
 
         tbody.innerHTML = '';
 
-        administradores.forEach(usuario => {
+        pacientes.forEach(usuario => {
             const datosLimpios = filtrarDatosUsuario(usuario);
             const fila = document.createElement('tr');
             fila.innerHTML = `
@@ -203,11 +203,11 @@ async function cargarTablaUsuarios() {
             });
         });
     } catch (error) {
-        console.error('Error al cargar administradores:', error);
+        console.error('Error al cargar pacientes:', error);
         tbody.innerHTML = `
             <tr>
                 <td colspan="7" class="text-center text-danger">
-                    Error al cargar los administradores. Intenta nuevamente.
+                    Error al cargar los pacientes. Intenta nuevamente.
                 </td>
             </tr>
         `;
@@ -229,8 +229,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('nombreUsuario').textContent = verificacion.sesion.nombre;
     }
 
-    // cargar usuarios
-    cargarTablaUsuarios();
+    // cargar pacientes
+    cargarTablaPacientes();
 });
 
 // función para cerrar sesión desde el botón

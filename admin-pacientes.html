@@ -2,11 +2,10 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IDW S.A. - Administrar Usuarios</title>
+    <title>IDW S.A. - Administrar Pacientes</title>
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/oscuroclaro.css" rel="stylesheet">
     <link href="css/adminMedicos.css" rel="stylesheet">
-    <link href="css/menuAdmin.css" rel="stylesheet">
 
 </head>
 <body>
@@ -43,31 +42,48 @@
                         </a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link text-white fw-bold" href="admin-pacientes.html" role="tab" style="padding: 1rem; border: none;">
+                        <a class="nav-link active text-white fw-bold" href="admin-pacientes.html" role="tab" style="padding: 1rem; border: none;">
                             <i class="bi bi-person-heart me-2"></i>Pacientes
                         </a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active text-white fw-bold" href="admin-usuarios.html" role="tab" style="padding: 1rem; border: none;">
+                        <a class="nav-link text-white fw-bold" href="admin-usuarios.html" role="tab" style="padding: 1rem; border: none;">
                             <i class="bi bi-shield-lock me-2"></i>Administradores
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
+
+        <style>
+            .nav-tabs .nav-link {
+                transition: all 0.3s ease;
+                border-radius: 0;
+            }
+            .nav-tabs .nav-link.active {
+                background-color: rgba(255, 255, 255, 0.25) !important;
+                border: none;
+                box-shadow: inset 0 -3px 0 rgba(255, 255, 255, 0.5);
+            }
+            .nav-tabs .nav-link:hover:not(.active) {
+                background-color: rgba(255, 255, 255, 0.1);
+                color: white;
+            }
+        </style>
+
         <!-- panel de control -->
         <div class="row mt-4">
             <div class="col-12">
-                <h3>Gestión de Administradores</h3>
-                <p class="text-muted">Administradores registrados en el sistema</p>
+                <h3>Gestión de Pacientes</h3>
+                <p class="text-muted">Pacientes registrados en el sistema</p>
             </div>
         </div>
 
-        <!-- tabla de administradores -->
+        <!-- tabla de pacientes -->
         <div class="table-container">
             <div class="table-responsive">
                 <table class="table table-hover">
-                    <thead class="table-danger">
+                    <thead class="table-success">
                         <tr>
                             <th>ID</th>
                             <th>Foto</th>
@@ -78,13 +94,13 @@
                             <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody id="tablaAdministradores">
+                    <tbody id="tablaPacientes">
                         <tr>
                             <td colspan="7" class="text-center text-muted">
                                 <span class="spinner-border spinner-border-sm me-2" role="status">
                                     <span class="visually-hidden">Cargando...</span>
                                 </span>
-                                Cargando administradores...
+                                Cargando pacientes...
                             </td>
                         </tr>
                     </tbody>
@@ -96,8 +112,8 @@
         <div class="row mt-4">
             <div class="col-12">
                 <div class="alert alert-info" role="alert">
-                    <strong>Nota de seguridad:</strong> Se muestran solo datos públicos de los administradores (nombre, usuario, edad, género).
-                    Los datos sensibles como email, teléfono, dirección, etc. no son mostrados en la tabla.
+                    <strong>Nota de seguridad:</strong> Se muestran solo datos públicos de los pacientes (nombre, usuario, edad, género).
+                    Los datos sensibles como email, teléfono, dirección, etc. no son mostrados.
                 </div>
             </div>
         </div>
@@ -108,13 +124,13 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header bg-warning">
-                    <h5 class="modal-title" id="modalTituloUsuario">Datos Sensibles del Usuario</h5>
+                    <h5 class="modal-title" id="modalTituloUsuario">Datos Sensibles del Paciente</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row mb-3">
                         <div class="col-md-4 text-center">
-                            <img id="usuarioFoto" src="" alt="Foto del usuario" class="img-fluid rounded" style="max-width: 150px;">
+                            <img id="usuarioFoto" src="" alt="Foto del paciente" class="img-fluid rounded" style="max-width: 150px;">
                             <p class="mt-2"><strong id="usuarioNombreFull"></strong></p>
                         </div>
                         <div class="col-md-8">
@@ -131,7 +147,7 @@
 
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="js/login-user.js"></script>
-    <script src="js/admin-usuarios.js"></script>
+    <script src="js/admin-pacientes.js"></script>
     <script src="js/verificacion-login.js"></script>
 </body>
 </html>
