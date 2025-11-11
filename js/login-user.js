@@ -1,40 +1,45 @@
-// datos de usuarios para el login
-const usuariosAdmin = {
-    usuarios: [
-        {
-            id: 1,
-            usuario: "admin",
-            password: "123456",
-            nombre: "Administrador Principal"
-        },
-        {
-            id: 2,
-            usuario: "medico",
-            password: "medico123",
-            nombre: "Dr. Administrador"
+// API URL para login
+const AUTH_API_URL = 'https://dummyjson.com/auth/login';
+
+// chequea si el usuario y password son correctos usando la API de DummyJSON
+async function validarLogin(usuario, password) {
+    try {
+        const response = await fetch(AUTH_API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: usuario,
+                password: password
+            })
+        });
+
+        if (!response.ok) {
+            return { exito: false, error: "Usuario o contraseña incorrectos" };
         }
-    ]
-};
 
-// chequea si el usuario y password son correctos
-function validarLogin(usuario, password) {
-    const usuarioEncontrado = usuariosAdmin.usuarios.find(u =>
-        u.usuario === usuario && u.password === password
-    );
+        const data = await response.json();
 
-    if (usuarioEncontrado) {
+        // guarda el accessToken en sessionStorage
+        sessionStorage.setItem('accessToken', data.accessToken);
+
         // guarda la sesion en localStorage
         const sesion = {
-            usuario: usuarioEncontrado.usuario,
-            nombre: usuarioEncontrado.nombre,
+            usuario: data.username,
+            nombre: data.firstName + ' ' + data.lastName,
+            token: data.token,
+            refreshToken: data.refreshToken,
+            id: data.id,
             loginTime: new Date().getTime(),
             activo: true
         };
         localStorage.setItem('sesionAdmin', JSON.stringify(sesion));
-        return { exito: true, usuario: usuarioEncontrado };
+        return { exito: true, usuario: data };
+    } catch (error) {
+        console.error('Error en la solicitud de login:', error);
+        return { exito: false, error: "Error al conectar con el servidor" };
     }
-
-    return { exito: false, error: "Usuario o contraseña incorrectos" };
 }
 
 // verifica si hay una sesion activa
@@ -62,6 +67,7 @@ function verificarSesion() {
 // cierra la sesion
 function cerrarSesion() {
     localStorage.removeItem('sesionAdmin');
+    sessionStorage.removeItem('accessToken');
     window.location.href = 'admin.html';
 }
 
