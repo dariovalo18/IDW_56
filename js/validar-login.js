@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginText = document.getElementById('loginText');
     const loginSpinner = document.getElementById('loginSpinner');
 
-    loginForm.addEventListener('submit', (e) => {
+    loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         // mostrar loading
@@ -22,9 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const usuario = document.getElementById('usuario').value;
         const password = document.getElementById('password').value;
 
-        // simular un pequeno delay para el efecto de loading
-        setTimeout(() => {
-            const resultado = validarLogin(usuario, password);
+        try {
+            const resultado = await validarLogin(usuario, password);
 
             if (resultado.exito) {
                 // login exitoso
@@ -39,6 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 loginText.textContent = 'Iniciar Sesión';
                 loginSpinner.classList.add('d-none');
             }
-        }, 800);
+        } catch (error) {
+            console.error('Error durante el login:', error);
+            errorMessage.textContent = 'Error al procesar el login';
+            errorMessage.style.display = 'block';
+            loginText.textContent = 'Iniciar Sesión';
+            loginSpinner.classList.add('d-none');
+        }
     });
 });
