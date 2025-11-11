@@ -31,3 +31,11 @@ const medicosData = {
         }
     ]
 };
+const especialidadesData = {
+    especialidades: [
+        { id: 1, nombre: "Cardiología" },
+        { id: 2, nombre: "Pediatría" },
+        { id: 3, nombre: "Neurología" },
+        { id: 4, nombre: "Dermatología" }
+    ]
+};
