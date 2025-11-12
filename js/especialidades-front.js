@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <p class="card-text text-muted"><small>${nombreEspecialidad}</small></p>
                             <p class="card-text"><small>${medico.descripcion || 'Sin descripción'}</small></p>
                             <p class="card-text"><strong>Consulta: $${medico.valorConsulta || '0'}</strong></p>
-                            <a href="#" class="btn btn-primary btn-sm">Agendar cita</a>
+                            <a href="admin.html" class="btn btn-primary btn-sm">Agendar cita</a>
                         </div>
                     </div>
                 `;
