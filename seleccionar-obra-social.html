@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionar Obra Social</title>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/oscuroclaro.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-logo">
+                <img src="img/logo.png" alt="Logo IDW S.A." class="mb-3">
+                <h3 class="text-success">Selecciona tu Obra Social</h3>
+                <p class="text-muted">IDW S.A. - Clínica</p>
+            </div>
+
+            <div class="mb-4">
+                <p class="text-center">Selecciona tu obra social para proceder a agendar turnos. Esta información se utilizará para calcular tu cobertura.</p>
+            </div>
+
+            <!-- Opciones de obra social -->
+            <div id="obrassocialesContainer" class="mb-4">
+                <!-- Se cargarán dinámicamente -->
+            </div>
+
+            <div class="alert alert-info" id="advertencia" role="alert">
+                <small><strong>ℹ️ Nota:</strong> Puedes cambiar tu obra social en cualquier momento desde tu perfil.</small>
+            </div>
+
+            <div class="text-center mt-3">
+                <a href="index.html" class="text-muted text-decoration-none">
+                    ← Volver al sitio principal
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación -->
+    <div class="modal fade" id="modalConfirmarObra" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmar Selección</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Has seleccionado: <strong id="nombreObraConfirm"></strong></p>
+                    <p>Cobertura: <strong><span id="porcentajeObraConfirm"></span>%</strong></p>
+                    <p>¿Deseas continuar con esta obra social?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cambiar</button>
+                    <button type="button" class="btn btn-success" onclick="confirmarObraSocial()">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/datos-iniciales.js"></script>
+    <script src="js/seleccionar-obra-social.js"></script>
+</body>
+</html>

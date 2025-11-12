@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Turno</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/oscuroclaro.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container-fluid">
+            <span class="navbar-brand">👨‍⚕️ IDW Clinic - Paciente</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <span class="nav-link">Bienvenido: <strong id="nombreUsuario">Paciente</strong></span>
+                    </li>
+                    <li class="nav-item">
+                        <span class="nav-link badge bg-info text-dark">
+                            Obra Social: <strong id="obraSocialDisplay">Cargando...</strong>
+                        </span>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-warning btn-sm me-2" onclick="cambiarObraSocial()">Cambiar Obra Social</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-danger btn-sm" onclick="cerrarSesion()">Cerrar Sesión</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <!-- Tabs de navegación -->
+        <ul class="nav nav-tabs mb-4" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link" href="paciente-turnos.html">📅 Mis Turnos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="paciente-agendar.html">➕ Agendar Turno</a>
+            </li>
+        </ul>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>➕ Agendar Nuevo Turno</h2>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <!-- Filtros de búsqueda -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title mb-0">Filtros de Búsqueda</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="filtroEspecialidad" class="form-label">Especialidad:</label>
+                            <select id="filtroEspecialidad" class="form-select" onchange="filtrarMedicos()">
+                                <option value="">-- Todas --</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="filtroObraSocial" class="form-label">Obra Social:</label>
+                            <select id="filtroObraSocial" class="form-select" onchange="filtrarMedicos()">
+                                <option value="">-- Todas --</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="filtroMedico" class="form-label">Médico:</label>
+                            <select id="filtroMedico" class="form-select" onchange="filtrarMedicos()">
+                                <option value="">-- Todos --</option>
+                            </select>
+                        </div>
+
+                        <button class="btn btn-success w-100" onclick="filtrarMedicos()">Buscar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de médicos disponibles -->
+            <div class="col-md-9">
+                <div id="medicosDisponibles" class="row">
+                    <div class="col-12 text-center text-muted">Selecciona filtros para ver médicos disponibles</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para seleccionar fecha y hora -->
+    <div class="modal fade" id="modalAgendarTurno" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tituloModalTurno">Agendar Turno</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6 id="datosMedicoTurno"></h6>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <label for="fechaTurno" class="form-label">Selecciona una fecha:</label>
+                            <input type="date" id="fechaTurno" class="form-control" onchange="cargarHorariosDisponibles()">
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <label class="form-label">Horarios disponibles:</label>
+                            <div id="horariosDisponibles" class="row gap-2">
+                                <div class="col-12 text-muted">Selecciona una fecha para ver los horarios disponibles</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnConfirmarTurno" disabled onclick="confirmarAgendarTurno()">
+                        <span id="btnConfirmarTexto">Confirmar Turno</span>
+                        <span id="btnConfirmarSpinner" class="spinner-border spinner-border-sm ms-2 d-none"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/login-user.js"></script>
+    <script src="js/datos-iniciales.js"></script>
+    <script src="js/medicos-data.js"></script>
+    <script src="js/horarios-data.js"></script>
+    <script src="js/paciente-agendar.js"></script>
+    <script src="js/verificacion-login.js"></script>
+</body>
+</html>

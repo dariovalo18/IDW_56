@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test API DummyJSON</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Test API DummyJSON</h1>
+        <button class="btn btn-primary" onclick="testLogin()">Test Login emilys</button>
+        <button class="btn btn-secondary" onclick="testLogin2()">Test Login michaelw</button>
+        <div id="resultado" class="mt-4"></div>
+    </div>
+
+    <script>
+        async function testLogin() {
+            const resultado = document.getElementById('resultado');
+            resultado.innerHTML = '<p>Probando...</p>';
+
+            try {
+                // Step 1: Login
+                const loginRes = await fetch('https://dummyjson.com/auth/login', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({username: 'emilys', password: 'emilyspass'})
+                });
+
+                const loginData = await loginRes.json();
+                console.log('Login response:', loginData);
+
+                if (!loginRes.ok) {
+                    resultado.innerHTML = '<p class="text-danger">Login fallido</p>';
+                    return;
+                }
+
+                // Step 2: Get user details
+                const userRes = await fetch(`https://dummyjson.com/users/${loginData.id}`, {
+                    headers: {'Authorization': `Bearer ${loginData.accessToken}`}
+                });
+
+                const userData = await userRes.json();
+                console.log('User data:', userData);
+
+                resultado.innerHTML = `
+                    <h4>Usuario: ${loginData.username}</h4>
+                    <p><strong>ID:</strong> ${loginData.id}</p>
+                    <p><strong>Nombre:</strong> ${loginData.firstName} ${loginData.lastName}</p>
+                    <p><strong>Role:</strong> <mark>${userData.role || 'NO TIENE ROLE'}</mark></p>
+                    <hr>
+                    <pre>${JSON.stringify(userData, null, 2)}</pre>
+                `;
+            } catch (error) {
+                resultado.innerHTML = `<p class="text-danger">Error: ${error.message}</p>`;
+                console.error(error);
+            }
+        }
+
+        async function testLogin2() {
+            const resultado = document.getElementById('resultado');
+            resultado.innerHTML = '<p>Probando...</p>';
+
+            try {
+                // Step 1: Login
+                const loginRes = await fetch('https://dummyjson.com/auth/login', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({username: 'michaelw', password: 'michaelwpass'})
+                });
+
+                const loginData = await loginRes.json();
+                console.log('Login response:', loginData);
+
+                if (!loginRes.ok) {
+                    resultado.innerHTML = '<p class="text-danger">Login fallido</p>';
+                    return;
+                }
+
+                // Step 2: Get user details
+                const userRes = await fetch(`https://dummyjson.com/users/${loginData.id}`, {
+                    headers: {'Authorization': `Bearer ${loginData.accessToken}`}
+                });
+
+                const userData = await userRes.json();
+                console.log('User data:', userData);
+
+                resultado.innerHTML = `
+                    <h4>Usuario: ${loginData.username}</h4>
+                    <p><strong>ID:</strong> ${loginData.id}</p>
+                    <p><strong>Nombre:</strong> ${loginData.firstName} ${loginData.lastName}</p>
+                    <p><strong>Role:</strong> <mark>${userData.role || 'NO TIENE ROLE'}</mark></p>
+                    <hr>
+                    <pre>${JSON.stringify(userData, null, 2)}</pre>
+                `;
+            } catch (error) {
+                resultado.innerHTML = `<p class="text-danger">Error: ${error.message}</p>`;
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+</html>

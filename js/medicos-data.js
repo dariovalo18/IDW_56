@@ -11,6 +11,39 @@ function inicializarMedicos() {
         console.log('No hay datos en localStorage, cargamos datos por defecto.');
     } else {
         console.log('Datos de medicos ya existentes, no cargamos');
+        // migrar datos viejos al nuevo formato si es necesario
+        migrarDatosAntiguos();
+    }
+}
+
+// migra datos antiguos al nuevo formato
+function migrarDatosAntiguos() {
+    const datos = obtenerMedicos();
+    let necesitaMigracion = false;
+
+    datos.medicos = datos.medicos.map(medico => {
+        // si falta algún campo del nuevo formato, lo agregamos
+        if (!medico.matricula || !medico.apellido || medico.obrasocialesId === undefined) {
+            necesitaMigracion = true;
+            return {
+                id: medico.id,
+                matricula: medico.matricula || medico.id,
+                apellido: medico.apellido || '',
+                nombre: medico.nombre || 'N/A',
+                especialidadId: medico.especialidadId || 1,
+                descripcion: medico.descripcion || '',
+                obrasocialesId: medico.obrasocialesId || [],
+                imagen: medico.imagen || 'img/default-doctor.jpg',
+                alt: medico.alt || 'Médico',
+                valorConsulta: medico.valorConsulta || 0
+            };
+        }
+        return medico;
+    });
+
+    if (necesitaMigracion) {
+        guardarMedicos(datos);
+        console.log('Datos migrando al nuevo formato');
     }
 }
 
@@ -84,7 +117,11 @@ function configurarFiltros() {
 // agrega un medico nuevo a la lista
 function agregarMedico(nuevoMedico) {
     const datos = obtenerMedicos();
-    nuevoMedico.id = datos.medicos.length + 1;
+    
+    // obtener el ID mas alto existente
+    const maxId = datos.medicos.length > 0 ? Math.max(...datos.medicos.map(m => m.id)) : 0;
+    nuevoMedico.id = maxId + 1;
+    
     datos.medicos.push(nuevoMedico);
     guardarMedicos(datos);
 

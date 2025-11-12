@@ -1,9 +1,12 @@
 // API URL para login
 const AUTH_API_URL = 'https://dummyjson.com/auth/login';
+const USERS_API_URL = 'https://dummyjson.com/users';
 
 // chequea si el usuario y password son correctos usando la API de DummyJSON
 async function validarLogin(usuario, password) {
     try {
+        console.log('Intentando login con:', usuario);
+        
         const response = await fetch(AUTH_API_URL, {
             method: 'POST',
             headers: {
@@ -16,25 +19,56 @@ async function validarLogin(usuario, password) {
         });
 
         if (!response.ok) {
+            console.log('Login fallido:', response.status);
             return { exito: false, error: "Usuario o contraseña incorrectos" };
         }
 
         const data = await response.json();
+        console.log('Login exitoso, obteniendo role...', data);
 
         // guarda el accessToken en sessionStorage
         sessionStorage.setItem('accessToken', data.accessToken);
+
+        // obtener datos adicionales del usuario (incluyendo role)
+        let rol = 'user'; // por defecto es 'user' (paciente)
+        try {
+            const userResponse = await fetch(`${USERS_API_URL}/${data.id}`, {
+                headers: {
+                    'Authorization': `Bearer ${data.accessToken}`
+                }
+            });
+            
+            if (userResponse.ok) {
+                const userData = await userResponse.json();
+                rol = userData.role || 'user'; 
+                console.log('Role obtenido:', rol);
+            } else {
+                console.log('No se pudo obtener datos del usuario, usando role por defecto');
+            }
+        } catch (e) {
+            console.log('Error al obtener role adicional:', e);
+        }
 
         // guarda la sesion en localStorage
         const sesion = {
             usuario: data.username,
             nombre: data.firstName + ' ' + data.lastName,
+            firstName: data.firstName,
+            lastName: data.lastName,
             token: data.token,
             refreshToken: data.refreshToken,
             id: data.id,
+            role: rol,
             loginTime: new Date().getTime(),
             activo: true
         };
+        
+        console.log('Sesion guardada:', sesion);
+        
+        // guardar en ambos formatos para compatibilidad
+        localStorage.setItem('sesion', JSON.stringify(sesion));
         localStorage.setItem('sesionAdmin', JSON.stringify(sesion));
+        
         return { exito: true, usuario: data };
     } catch (error) {
         console.error('Error en la solicitud de login:', error);
@@ -44,7 +78,7 @@ async function validarLogin(usuario, password) {
 
 // verifica si hay una sesion activa
 function verificarSesion() {
-    const sesionGuardada = localStorage.getItem('sesionAdmin');
+    const sesionGuardada = localStorage.getItem('sesion') || localStorage.getItem('sesionAdmin');
 
     if (!sesionGuardada) {
         return { activa: false, error: "No hay sesion activa" };
@@ -64,10 +98,21 @@ function verificarSesion() {
     return { activa: true, sesion: sesion };
 }
 
-// cierra la sesion
+// cierra la sesion y limpia todos los datos
 function cerrarSesion() {
+    // Limpiar sesión
     localStorage.removeItem('sesionAdmin');
+    localStorage.removeItem('sesion');
+    
+    // Limpiar tokens
     sessionStorage.removeItem('accessToken');
+    sessionStorage.removeItem('token');
+    sessionStorage.clear(); // Limpiar todo sessionStorage
+    
+    // Limpiar datos de usuario si es necesario
+    localStorage.removeItem('usuarioActual');
+    
+    // Redirigir a login
     window.location.href = 'admin.html';
 }
 

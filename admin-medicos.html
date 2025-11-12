@@ -7,6 +7,7 @@
     <link href="css/oscuroclaro.css" rel="stylesheet">
     <link href="css/adminMedicos.css" rel="stylesheet">
     <link href="css/menuAdmin.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 
 </head>
 <body>
@@ -33,7 +34,7 @@
     </header>
 
     <main class="container">
-        <!-- navegacion del admin -->
+        <!-- navegación del admin -->
         <div class="row mt-4 mb-4">
             <div class="col-12">
                 <ul class="nav nav-tabs nav-fill border-0" role="tablist" style="background: linear-gradient(135deg, #198754 0%, #0d5c3f 100%); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -43,18 +44,28 @@
                         </a>
                     </li>
                     <li class="nav-item" role="presentation">
+                        <a class="nav-link text-white fw-bold" href="admin-turnos-medicos.html" role="tab" style="padding: 1rem; border: none;">
+                            <i class="bi bi-calendar-event me-2"></i>Turnos
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link text-white fw-bold" href="admin-horarios.html" role="tab" style="padding: 1rem; border: none;">
+                            <i class="bi bi-clock me-2"></i>Horarios
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
                         <a class="nav-link text-white fw-bold" href="admin-especialidades.html" role="tab" style="padding: 1rem; border: none;">
                             <i class="bi bi-card-list me-2"></i>Especialidades
                         </a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link text-white fw-bold" href="admin-pacientes.html" role="tab" style="padding: 1rem; border: none;">
-                            <i class="bi bi-person-heart me-2"></i>Pacientes
+                        <a class="nav-link text-white fw-bold" href="admin-obras-sociales.html" role="tab" style="padding: 1rem; border: none;">
+                            <i class="bi bi-briefcase-medical me-2"></i>Obras Sociales
                         </a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link text-white fw-bold" href="admin-obras-sociales.html" role="tab" style="padding: 1rem; border: none;">
-                            <i class="bi bi-briefcase-medical me-2"></i>Obras Sociales
+                        <a class="nav-link text-white fw-bold" href="admin-pacientes.html" role="tab" style="padding: 1rem; border: none;">
+                            <i class="bi bi-person-heart me-2"></i>Pacientes
                         </a>
                     </li>
                     <li class="nav-item" role="presentation">
@@ -84,10 +95,11 @@
                 <table class="table table-hover">
                     <thead class="table-success">
                         <tr>
-                            <th>ID</th>
+                            <th>Matrícula</th>
                             <th>Foto</th>
                             <th>Nombre</th>
                             <th>Especialidad</th>
+                            <th>Valor Consulta</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -112,19 +124,43 @@
                         <input type="hidden" id="medicoId" name="id">
                         
                         <div class="mb-3">
-                            <label for="medicoNombre" class="form-label">Nombre completo</label>
-                            <input type="text" class="form-control" id="medicoNombre" name="nombre" required>
+                            <label for="medicoMatricula" class="form-label">Matrícula Profesional</label>
+                            <input type="number" class="form-control" id="medicoMatricula" name="matricula" required>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="medicoApellido" class="form-label">Apellido</label>
+                                <input type="text" class="form-control" id="medicoApellido" name="apellido" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="medicoNombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="medicoNombre" name="nombre" required>
+                            </div>
                         </div>
                         
                         <div class="mb-3">
                             <label for="medicoEspecialidad" class="form-label">Especialidad</label>
-                            <select class="form-select" id="medicoEspecialidad" name="especialidad" required>
+                            <select class="form-select" id="medicoEspecialidad" name="especialidadId" required>
                                 <option value="">Selecciona una especialidad</option>
-                                <option value="cardiologia">Cardiología</option>
-                                <option value="pediatria">Pediatría</option>
-                                <option value="neurologia">Neurología</option>
-                                <option value="dermatologia">Dermatología</option>
                             </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="medicoDescripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="medicoDescripcion" name="descripcion" rows="3" required placeholder="Presentación del profesional"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="medicoObrasSociales" class="form-label">Obras Sociales que acepta</label>
+                            <div id="medicoObrasSociales" class="border rounded p-2" style="max-height: 150px; overflow-y: auto;">
+                                <!-- Se llenarán dinámicamente con checkboxes -->
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="medicoValorConsulta" class="form-label">Valor de Consulta ($)</label>
+                            <input type="number" class="form-control" id="medicoValorConsulta" name="valorConsulta" step="0.01" required>
                         </div>
                         
                         <div class="mb-3">

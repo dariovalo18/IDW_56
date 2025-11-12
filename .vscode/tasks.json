@@ -1,0 +1,19 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Servidor HTTP Local",
+			"type": "shell",
+			"command": "python",
+			"args": [
+				"-m",
+				"http.server",
+				"8000",
+				"--directory",
+				"c:\\Users\\Dario\\Desktop\\IDW_FINAL\\IDW_56"
+			],
+			"isBackground": true,
+			"group": "none"
+		}
+	]
+}
