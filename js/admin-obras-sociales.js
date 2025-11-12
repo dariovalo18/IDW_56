@@ -6,6 +6,26 @@ document.addEventListener('DOMContentLoaded', () => {
     cargarTablaObrasSociales();      // carga
 });
 
+// función para cerrar sesión desde el botón del header
+function cerrarSesionAdmin() {
+    try {
+        if (confirm('¿Seguro que quieres cerrar la sesión?')) {
+            if (typeof cerrarSesion === 'function') {
+                cerrarSesion();
+            } else {
+                // Fallback: limpiar mínimamente y redirigir
+                localStorage.removeItem('sesion');
+                localStorage.removeItem('sesionAdmin');
+                sessionStorage.clear();
+                window.location.href = 'admin.html';
+            }
+        }
+    } catch (e) {
+        console.error('Error al cerrar sesión:', e);
+        window.location.href = 'admin.html';
+    }
+}
+
 // Cargar la tabla y genera filas
 function cargarTablaObrasSociales() {
     const tabla = document.getElementById('tablaObrasSociales');

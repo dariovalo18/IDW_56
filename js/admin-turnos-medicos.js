@@ -163,10 +163,9 @@ function cargarTurnosPorMedico() {
     }
     
     tbody.innerHTML = turnosFiltrados.map(turno => {
-        // Buscar nombre del paciente
-        const paciente = pacientes.find(p => p.id === turno.pacienteId);
-        const nombrePaciente = paciente ? `${paciente.apellido}, ${paciente.nombre}` : `Paciente ID: ${turno.pacienteId}`;
-        const documentoPaciente = paciente ? paciente.documento : 'N/A';
+        // Usar nombre del paciente guardado en el turno
+        const nombrePaciente = turno.pacienteNombre || `Paciente ID: ${turno.pacienteId}`;
+        const documentoPaciente = turno.pacienteDocumento || 'N/A';
         
         // Obtener médico actual
         const medico = medicosArray.find(m => m.id === turno.medicoId);
@@ -179,22 +178,25 @@ function cargarTurnosPorMedico() {
         let obraSocialNombre = 'N/A';
         let porcentajeCobertura = 0;
         
+        // Usar el porcentaje del turno si está disponible (es el más confiable)
+        if (turno.obraSocialPorcentaje !== undefined && turno.obraSocialPorcentaje !== null) {
+            porcentajeCobertura = turno.obraSocialPorcentaje;
+        } else if (turno.obraSocialId) {
+            // Fallback: buscar el porcentaje en el array
+            const obra = obrasArray.find(o => o.id === turno.obraSocialId);
+            if (obra) {
+                porcentajeCobertura = obra.porcentaje || 0;
+            }
+        }
+        
         // Usar el nombre de obra social del turno si está disponible
         if (turno.obraSocialNombre) {
             obraSocialNombre = turno.obraSocialNombre;
-            // Buscar el porcentaje en el array si existe
-            if (turno.obraSocialId) {
-                const obra = obrasArray.find(o => o.id === turno.obraSocialId);
-                if (obra) {
-                    porcentajeCobertura = obra.porcentaje || 0;
-                }
-            }
         } else if (turno.obraSocialId) {
             // Fallback: buscar por ID si no hay nombre
             const obra = obrasArray.find(o => o.id === turno.obraSocialId);
             if (obra) {
                 obraSocialNombre = obra.nombre;
-                porcentajeCobertura = obra.porcentaje || 0;
             }
         }
         
@@ -285,9 +287,9 @@ function abrirDetallesTurno(turnoId) {
         return;
     }
     
-    // Obtener datos del paciente
-    const pacientes = JSON.parse(localStorage.getItem('pacientes')) || [];
-    const paciente = pacientes.find(p => p.id === turno.pacienteId);
+    // Obtener datos del paciente del turno (ya están guardados)
+    const nombrePaciente = turno.pacienteNombre || 'N/A';
+    const documentoPaciente = turno.pacienteDocumento || 'N/A';
     
     // Obtener médicos
     let medicosArray = [];
@@ -337,9 +339,11 @@ function abrirDetallesTurno(turnoId) {
         obraSocial = obrasArray.find(o => o.id === turno.obraSocialId);
     }
     
-    // Calcular valores
+    // Calcular valores - Usar el porcentaje guardado en el turno
     const valorConsulta = medico ? medico.valorConsulta : 0;
-    const porcentajeCobertura = obraSocial ? obraSocial.porcentaje : 0;
+    const porcentajeCobertura = turno.obraSocialPorcentaje !== undefined && turno.obraSocialPorcentaje !== null 
+        ? turno.obraSocialPorcentaje 
+        : (obraSocial ? obraSocial.porcentaje : 0);
     const valorCobertura = (valorConsulta * porcentajeCobertura) / 100;
     const valorTotal = valorConsulta - valorCobertura;
     
@@ -358,8 +362,8 @@ function abrirDetallesTurno(turnoId) {
     // Llenar modal de detalles
     document.getElementById('detallesIdTurno').textContent = turno.id;
     document.getElementById('detallesIdPaciente').textContent = turno.pacienteId;
-    document.getElementById('detallesNombrePaciente').textContent = paciente ? `${paciente.apellido}, ${paciente.nombre}` : 'N/A';
-    document.getElementById('detallesDocumento').textContent = paciente ? paciente.documento : 'N/A';
+    document.getElementById('detallesNombrePaciente').textContent = nombrePaciente;
+    document.getElementById('detallesDocumento').textContent = documentoPaciente;
     document.getElementById('detallesNumeroTurno').textContent = turno.id;
     
     const fecha = new Date(`${turno.fecha}T00:00:00`);
@@ -420,9 +424,8 @@ function abrirEditarTurno(turnoId) {
         return;
     }
     
-    // Obtener datos del paciente
-    const pacientes = JSON.parse(localStorage.getItem('pacientes')) || [];
-    const paciente = pacientes.find(p => p.id === turno.pacienteId);
+    // Obtener datos del paciente del turno (ya están guardados)
+    const nombrePaciente = turno.pacienteNombre || `Paciente ID: ${turno.pacienteId}`;
     
     turnoActualEditando = turnoId;
     
@@ -430,9 +433,7 @@ function abrirEditarTurno(turnoId) {
     document.getElementById('turnoFecha').value = turno.fecha;
     document.getElementById('turnoHora').value = turno.hora;
     document.getElementById('turnoEstado').value = turno.estado;
-    document.getElementById('turnoPacienteNombre').value = paciente ? 
-        `${paciente.apellido}, ${paciente.nombre}` : 
-        `Paciente ID: ${turno.pacienteId}`;
+    document.getElementById('turnoPacienteNombre').value = nombrePaciente;
     
     // Abrir modal
     const modal = new bootstrap.Modal(document.getElementById('modalEditarTurno'));

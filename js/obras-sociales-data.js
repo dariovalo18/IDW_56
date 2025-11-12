@@ -3,7 +3,7 @@
 // Cambios: se agregó el campo "porcentaje" en los objetos de obra social
 // y funciones se adaptaron para manejarlo.
 
-const OBRAS_SOCIALES_KEY = 'obrasSocialesData';
+const OBRAS_SOCIALES_KEY = 'obrassocialesData';
 
 let obrasSociales = [];
 
