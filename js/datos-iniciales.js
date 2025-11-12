@@ -9,7 +9,7 @@ const medicosData = {
             especialidadId: 1,
             descripcion: "Cardióloga con 15 años de experiencia en diagnóstico y tratamiento de enfermedades cardiovasculares. Especializada en cardiología pediátrica.",
             obrasocialesId: [1, 2, 3],
-            imagen: "img/cardiologa-gomez.jpeg",
+            imagen: "https://api.dicebear.com/7.x/avataaars/svg?seed=Analia",
             alt: "Dra. Analía Gómez",
             valorConsulta: 500.00
         },
@@ -21,7 +21,7 @@ const medicosData = {
             especialidadId: 2,
             descripcion: "Pediatra con 10 años de experiencia en atención integral de niños. Especializado en pediatría general y neonatología.",
             obrasocialesId: [1, 2, 4],
-            imagen: "img/Pediatra-lopez.jpeg",
+            imagen: "https://api.dicebear.com/7.x/avataaars/svg?seed=Carlos",
             alt: "Dr. Carlos López",
             valorConsulta: 400.00
         },
@@ -33,7 +33,7 @@ const medicosData = {
             especialidadId: 3,
             descripcion: "Neuróloga especializada en trastornos neurológicos y enfermedades degenerativas. Docente en la Universidad Nacional.",
             obrasocialesId: [2, 3, 4],
-            imagen: "img/Pediatra-rodriguez.jpeg",
+            imagen: "https://api.dicebear.com/7.x/avataaars/svg?seed=Mariana",
             alt: "Dra. Mariana Rodríguez",
             valorConsulta: 600.00
         },
@@ -45,7 +45,7 @@ const medicosData = {
             especialidadId: 4,
             descripcion: "Dermatólogo con experiencia en dermatología clínica y quirúrgica. Especializado en tratamientos estéticos.",
             obrasocialesId: [1, 3],
-            imagen: "img/dermatologo-suarez.jpeg",   //esa imagen no existe tengo q buscar una
+            imagen: "https://api.dicebear.com/7.x/avataaars/svg?seed=Ernesto",   //esa imagen no existe tengo q buscar una
             alt: "Dr. Ernesto Suárez",
             valorConsulta: 450.00
         }
@@ -62,11 +62,10 @@ const especialidadesData = {
 };
 
 const obrassocialesData = {
-    obrasSociales: [
-        { id: 1, nombre: "OSDE", porcentaje: 80 },
-        { id: 2, nombre: "SANCOR", porcentaje: 75 },
-        { id: 3, nombre: "OBRA SOCIAL NACIONAL", porcentaje: 70 },
-        { id: 4, nombre: "Swiss MEDICAL", porcentaje: 85 }
+    obrasSociales : [
+        { id: 1, nombre: "OSDE", porcentaje: 10, descripcion: "Cobertura nacional de OSDE", imagen: "img/osde-logo.jpg" },
+        { id: 2, nombre: "Swiss Medical", porcentaje: 15, descripcion: "Cobertura nacional de Swiss Medical", imagen: "img/swiss-medical-logo.jpeg" },
+        { id: 3, nombre: "Galeno", porcentaje: 20, descripcion: "Cobertura en Buenos Aires", imagen: "img/galeno-logo.jpeg" }
     ]
 };
 

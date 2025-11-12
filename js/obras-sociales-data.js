@@ -11,13 +11,12 @@ let obrasSociales = [];
 function inicializarObrasSociales() {
     const guardado = localStorage.getItem(OBRAS_SOCIALES_KEY);
     if (!guardado) {
-        obrasSociales = [
-            { id: 1, nombre: "OSDE", porcentaje: 10, descripcion: "Cobertura nacional de OSDE", imagen: "img/osde-logo.jpg" },
-            { id: 2, nombre: "Swiss Medical", porcentaje: 15, descripcion: "Cobertura nacional de Swiss Medical", imagen: "img/swiss-medical-logo.jpeg" },
-            { id: 3, nombre: "Galeno", porcentaje: 20, descripcion: "Cobertura en Buenos Aires", imagen: "img/galeno-logo.jpeg" }
-        ];
+        // Cargar desde datos-iniciales.js si está disponible
+        if (typeof obrassocialesData !== 'undefined' && obrassocialesData.obrasSociales) {
+            obrasSociales = obrassocialesData.obrasSociales;
+        } 
         guardarObrasSociales();
-        console.log('Datos de obras sociales inicializados por defecto.');
+        console.log('Datos de obras sociales inicializados desde datos-iniciales.js');
     } else {
         obrasSociales = JSON.parse(guardado).obrasSociales || [];
         console.log('Datos de obras sociales cargados desde localStorage.');
