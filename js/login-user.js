@@ -29,8 +29,9 @@ async function validarLogin(usuario, password) {
         // guarda el accessToken en sessionStorage
         sessionStorage.setItem('accessToken', data.accessToken);
 
-        // obtener datos adicionales del usuario (incluyendo role)
+        // obtener datos adicionales del usuario (incluyendo role y ssn)
         let rol = 'user'; // por defecto es 'user' (paciente)
+        let ssn = 'N/A'; // por defecto
         try {
             const userResponse = await fetch(`${USERS_API_URL}/${data.id}`, {
                 headers: {
@@ -40,8 +41,9 @@ async function validarLogin(usuario, password) {
             
             if (userResponse.ok) {
                 const userData = await userResponse.json();
-                rol = userData.role || 'user'; 
-                console.log('Role obtenido:', rol);
+                rol = userData.role || 'user';
+                ssn = userData.ssn || 'N/A';
+                console.log('Role obtenido:', rol, 'SSN:', ssn);
             } else {
                 console.log('No se pudo obtener datos del usuario, usando role por defecto');
             }
@@ -59,6 +61,7 @@ async function validarLogin(usuario, password) {
             refreshToken: data.refreshToken,
             id: data.id,
             role: rol,
+            ssn: ssn,
             loginTime: new Date().getTime(),
             activo: true
         };

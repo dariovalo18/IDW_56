@@ -269,7 +269,7 @@ function confirmarAgendarTurno() {
             const nuevoTurno = {
                 pacienteId: sesion.id,
                 pacienteNombre: `${sesion.firstName} ${sesion.lastName}`,
-                pacienteDocumento: sesion.documento || 'N/A',
+                pacienteDocumento: sesion.ssn || 'N/A',
                 medicoId: medicoSeleccionadoId,
                 fecha: fecha,
                 hora: horaSeleccionada,

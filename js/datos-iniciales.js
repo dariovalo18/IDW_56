@@ -9,7 +9,7 @@ const medicosData = {
             especialidadId: 1,
             descripcion: "Cardióloga con 15 años de experiencia en diagnóstico y tratamiento de enfermedades cardiovasculares. Especializada en cardiología pediátrica.",
             obrasocialesId: [1, 2, 3],
-            imagen: "https://api.dicebear.com/7.x/avataaars/svg?seed=Analia",
+            imagen: "https://he.amr.org.ar/wp-content/uploads/sites/14/2022/03/ARGUELLO_MARIA-367x367.jpg",
             alt: "Dra. Analía Gómez",
             valorConsulta: 500.00
         },
@@ -21,7 +21,7 @@ const medicosData = {
             especialidadId: 2,
             descripcion: "Pediatra con 10 años de experiencia en atención integral de niños. Especializado en pediatría general y neonatología.",
             obrasocialesId: [1, 2, 4],
-            imagen: "https://api.dicebear.com/7.x/avataaars/svg?seed=Carlos",
+            imagen: "https://he.amr.org.ar/wp-content/uploads/sites/14/2022/01/FAVARETO_JUAN-367x367.jpg",
             alt: "Dr. Carlos López",
             valorConsulta: 400.00
         },
@@ -33,7 +33,7 @@ const medicosData = {
             especialidadId: 3,
             descripcion: "Neuróloga especializada en trastornos neurológicos y enfermedades degenerativas. Docente en la Universidad Nacional.",
             obrasocialesId: [2, 3, 4],
-            imagen: "https://api.dicebear.com/7.x/avataaars/svg?seed=Mariana",
+            imagen: "https://he.amr.org.ar/wp-content/uploads/sites/14/2022/01/ZACCARDI_JULIA-367x367.jpg",
             alt: "Dra. Mariana Rodríguez",
             valorConsulta: 600.00
         },
@@ -45,7 +45,7 @@ const medicosData = {
             especialidadId: 4,
             descripcion: "Dermatólogo con experiencia en dermatología clínica y quirúrgica. Especializado en tratamientos estéticos.",
             obrasocialesId: [1, 3],
-            imagen: "https://api.dicebear.com/7.x/avataaars/svg?seed=Ernesto",   //esa imagen no existe tengo q buscar una
+            imagen: "https://he.amr.org.ar/wp-content/uploads/sites/14/2022/01/BUSNELLI_MAURICIO-367x367.jpg",   //esa imagen no existe tengo q buscar una
             alt: "Dr. Ernesto Suárez",
             valorConsulta: 450.00
         }
@@ -154,6 +154,7 @@ const horariosData = {
             horaFin: "19:00",
             duracionTurno: 20
         }
+        
     ]
 };
 
@@ -164,6 +165,7 @@ const turnosData = {
             id: 1,
             pacienteId: 101,
             pacienteNombre: "Juan García",
+            pacienteDocumento: "756.12345.6",
             medicoId: 1,
             horarioId: 1,
             fecha: "2025-11-18",
@@ -175,6 +177,7 @@ const turnosData = {
             id: 2,
             pacienteId: 102,
             pacienteNombre: "María López",
+            pacienteDocumento: "987.65432.1",
             medicoId: 1,
             horarioId: 1,
             fecha: "2025-11-18",

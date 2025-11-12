@@ -212,6 +212,7 @@ async function cargarPacientesNuevo() {
             // Guardar datos para luego
             opt.dataset.firstName = u.firstName;
             opt.dataset.lastName = u.lastName;
+            opt.dataset.ssn = u.ssn || 'N/A';
             sel.appendChild(opt);
         });
         sel.disabled = false;
@@ -363,6 +364,8 @@ function guardarNuevoTurno() {
     const pacienteId = parseInt(pacienteSel.value);
     const firstName = pacienteSel.options[pacienteSel.selectedIndex].dataset.firstName || '';
     const lastName = pacienteSel.options[pacienteSel.selectedIndex].dataset.lastName || '';
+    const pacienteSSN = pacienteSel.options[pacienteSel.selectedIndex].dataset.ssn || 'N/A';
+    
     const medicoId = parseInt(document.getElementById('nuevoMedico').value);
     const fecha = document.getElementById('nuevoFecha').value;
     const hora = document.getElementById('nuevoHora').value;
@@ -394,7 +397,7 @@ function guardarNuevoTurno() {
     const nuevoTurno = {
         pacienteId: pacienteId,
         pacienteNombre: `${firstName} ${lastName}`.trim(),
-        pacienteDocumento: 'N/A',
+        pacienteDocumento: pacienteSSN,
         medicoId: medicoId,
         fecha: fecha,
         hora: hora,
@@ -503,7 +506,7 @@ function cargarTurnosPorMedico() {
     if (!medicoId) {
         document.getElementById('tablaTurnosMedicos').innerHTML = `
             <tr>
-                <td colspan="7" class="text-center text-muted">Selecciona un médico para ver sus turnos</td>
+                <td colspan="11" class="text-center text-muted">Selecciona un médico para ver sus turnos</td>
             </tr>
         `;
         return;
@@ -547,7 +550,7 @@ function cargarTurnosPorMedico() {
     if (turnosFiltrados.length === 0) {
         tbody.innerHTML = `
             <tr>
-                <td colspan="10" class="text-center text-muted">No hay turnos agendados para este médico en la fecha seleccionada</td>
+                <td colspan="11" class="text-center text-muted">No hay turnos agendados para este médico en la fecha seleccionada</td>
             </tr>
         `;
         return;
@@ -669,11 +672,15 @@ function cargarTurnosPorMedico() {
             day: '2-digit' 
         });
         
+        // Nombre del médico
+        const nombreMedico = medico ? `Dr/a. ${medico.nombre} ${medico.apellido}` : 'N/A';
+        
         return `
             <tr>
                 <td><strong>#${turno.id}</strong></td>
                 <td>${nombrePaciente}</td>
                 <td>${documentoPaciente}</td>
+                <td>${nombreMedico}</td>
                 <td>${fechaFormato}</td>
                 <td>${turno.hora}</td>
                 <td>${nombreEspecialidad}</td>
