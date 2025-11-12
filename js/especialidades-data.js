@@ -47,7 +47,7 @@ function agregarEspecialidad(nuevaEspecialidad) {
 
 // borra una especialidad por su numero de ID
 function eliminarEspecialidad(id) {
-    const datos = obtenerEspecialidades();
+    const datos = obtenerEspecialidades();  
     datos.especialidades = datos.especialidades.filter(especialidad => especialidad.id !== id);
     guardarEspecialidades(datos);
 }

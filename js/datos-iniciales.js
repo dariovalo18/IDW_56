@@ -9,7 +9,7 @@ const medicosData = {
             especialidadId: 1,
             descripcion: "Cardióloga con 15 años de experiencia en diagnóstico y tratamiento de enfermedades cardiovasculares. Especializada en cardiología pediátrica.",
             obrasocialesId: [1, 2, 3],
-            imagen: "https://api.dicebear.com/7.x/avataaars/svg?seed=Amalia",
+            imagen: "img/cardiologa-gomez.jpeg",
             alt: "Dra. Analía Gómez",
             valorConsulta: 500.00
         },
@@ -21,7 +21,7 @@ const medicosData = {
             especialidadId: 2,
             descripcion: "Pediatra con 10 años de experiencia en atención integral de niños. Especializado en pediatría general y neonatología.",
             obrasocialesId: [1, 2, 4],
-            imagen: "https://api.dicebear.com/7.x/avataaars/svg?seed=Carlos",
+            imagen: "img/Pediatra-lopez.jpeg",
             alt: "Dr. Carlos López",
             valorConsulta: 400.00
         },
@@ -33,7 +33,7 @@ const medicosData = {
             especialidadId: 3,
             descripcion: "Neuróloga especializada en trastornos neurológicos y enfermedades degenerativas. Docente en la Universidad Nacional.",
             obrasocialesId: [2, 3, 4],
-            imagen: "https://api.dicebear.com/7.x/avataaars/svg?seed=Mariana",
+            imagen: "img/Pediatra-rodriguez.jpeg",
             alt: "Dra. Mariana Rodríguez",
             valorConsulta: 600.00
         },
@@ -45,7 +45,7 @@ const medicosData = {
             especialidadId: 4,
             descripcion: "Dermatólogo con experiencia en dermatología clínica y quirúrgica. Especializado en tratamientos estéticos.",
             obrasocialesId: [1, 3],
-            imagen: "https://api.dicebear.com/7.x/avataaars/svg?seed=Ernesto",
+            imagen: "img/dermatologo-suarez.jpeg",
             alt: "Dr. Ernesto Suárez",
             valorConsulta: 450.00
         }
