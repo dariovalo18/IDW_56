@@ -45,7 +45,7 @@ const medicosData = {
             especialidadId: 4,
             descripcion: "Dermatólogo con experiencia en dermatología clínica y quirúrgica. Especializado en tratamientos estéticos.",
             obrasocialesId: [1, 3],
-            imagen: "img/dermatologo-suarez.jpeg",
+            imagen: "img/dermatologo-suarez.jpeg",   //esa imagen no existe tengo q buscar una
             alt: "Dr. Ernesto Suárez",
             valorConsulta: 450.00
         }
