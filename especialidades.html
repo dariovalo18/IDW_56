@@ -52,28 +52,11 @@
 
         <h2 class="mt-4 mb-4 text-center">Especialidades de la Empresa</h2>
         <div class="mb-4 d-flex justify-content-center flex-wrap">
-            <div class="btn-group flex-wrap" role="group" aria-label="Basic checkbox toggle button group">
+           <div class="btn-group flex-wrap" id="especialidadesContainer" role="group"
+     aria-label="Grupo de botones de especialidades">
+               <!-- Los botones de especialidades se cargarán aquí dinámicamente desde localStorage -->
+           </div>
 
-                <input type="radio" class="btn-check filtro" name="especialidad" id="btnCardio" value="cardiologia"
-                    autocomplete="off">
-                <label class="btn btn-outline-primary" for="btnCardio">Cardiología</label>
-
-                <input type="radio" class="btn-check filtro" name="especialidad" id="btnPedia" value="pediatria"
-                    autocomplete="off">
-                <label class="btn btn-outline-primary" for="btnPedia">Pediatría</label>
-
-                <input type="radio" class="btn-check filtro" name="especialidad" id="btnNeuro" value="neurologia"
-                    autocomplete="off">
-                <label class="btn btn-outline-primary" for="btnNeuro">Neurología</label>
-
-                <input type="radio" class="btn-check filtro" name="especialidad" id="btnDerma" value="dermatologia"
-                    autocomplete="off">
-                <label class="btn btn-outline-primary" for="btnDerma">Dermatologia</label>
-
-                <input type="radio" class="btn-check filtro" name="especialidad" id="btnTodos" value=""
-                    autocomplete="off" checked>
-                <label class="btn btn-outline-secondary" for="btnTodos">Todas</label>
-            </div>
         </div>
 
         <!-- Contenedor de tarjetas que se carga dinámicamente -->
@@ -142,7 +125,8 @@
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="js/datos-iniciales.js"></script>
     <script src="js/medicos-data.js"></script>
-    <script src="js/oscuroclaro.js"></script>
+    <script src="js/especialidades-data.js"></script>
+    <script src="js/especialidades-front.js"></script>
 
 </body>
 

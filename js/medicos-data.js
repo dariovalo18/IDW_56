@@ -59,39 +59,44 @@ function guardarMedicos(datos) {
 }
 
 // crea las tarjetas de medicos en la pagina
+// crea las tarjetas de medicos en la pagina (versión corregida)
 function renderizarMedicos() {
     const datos = obtenerMedicos();
     const container = document.querySelector('.row.justify-content-center');
 
     // si no encuentra el contenedor, no hacer nada (estamos en otra pagina)
-    if (!container) {
-        return;
-    }
+    if (!container) return;
 
-    // borra lo que habia antes
+    // Traemos también las especialidades desde localStorage
+    const datosEspecialidades = JSON.parse(localStorage.getItem("especialidadesData") || '{"especialidades":[]}');
+    const especialidades = datosEspecialidades.especialidades || [];
+
+    // Limpiamos el contenedor antes de volver a renderizar
     container.innerHTML = '';
 
-    // hace una tarjeta por cada medico
+    // Creamos una tarjeta por cada médico
     datos.medicos.forEach(medico => {
+        // Buscamos el nombre de la especialidad correspondiente
+        const especialidad = especialidades.find(e => e.id == medico.especialidadId);
+        const nombreEspecialidad = especialidad ? especialidad.nombre : 'Sin especialidad';
+
         const tarjeta = document.createElement('div');
         tarjeta.className = 'col-md-3 d-flex justify-content-center';
-        // llena la tarjeta con la info del medico
-        // usamos estas comillas raras para meter html de varias lineas
+
         tarjeta.innerHTML = `
-            <div class="card text-center mb-3" style="width: 18rem;" data-especialidad="${medico.especialidad}">
-                <img src="${medico.imagen}" class="card-img-top" alt="${medico.alt}"  onerror="this.src='img/default-doctor.jpg'; this.alt='Imagen no disponible';" >
+            <div class="card text-center mb-3" style="width: 18rem;" data-especialidad="${nombreEspecialidad}">
+                <img src="${medico.imagen}" class="card-img-top" alt="${medico.alt}" onerror="this.src='img/default-doctor.jpg'; this.alt='Imagen no disponible';">
                 <div class="card-body">
-                    <h5 class="card-title">${medico.nombre}</h5>
-                    <p class="card-text">${medico.especialidad.charAt(0).toUpperCase() + medico.especialidad.slice(1)}</p>
+                    <h5 class="card-title">${medico.apellido}, ${medico.nombre}</h5>
+                    <p class="card-text text-muted">${nombreEspecialidad}</p>
+                    <p class="card-text"><strong>Consulta: $${medico.valorConsulta || 0}</strong></p>
                     <a href="#" class="btn btn-primary">Agendar cita</a>
                 </div>
             </div>
         `;
         container.appendChild(tarjeta);
     });
-
-    // arranca los filtros despues de crear las tarjetas
-    configurarFiltros();
+  configurarFiltros();
 }
 
 // hace que funcionen los botones de filtro
