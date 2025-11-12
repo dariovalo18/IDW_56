@@ -72,7 +72,7 @@ function cargarObrasSociales() {
                     </div>
                     <div class="col-md-4 text-end">
                         <div class="badge bg-success fs-5">
-                            ${obra.porcentaje}% de cobertura
+                            ${obra.porcentaje}% de descuento
                         </div>
                     </div>
                 </div>
