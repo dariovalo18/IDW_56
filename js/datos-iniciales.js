@@ -21,7 +21,7 @@ const medicosData = {
             especialidadId: 2,
             descripcion: "Pediatra con 10 años de experiencia en atención integral de niños. Especializado en pediatría general y neonatología.",
             obrasocialesId: [1, 2, 4],
-            imagen: "img/Pediatra-lopez.jpeg",
+            imagen: "img/Pediatra-Lopez.jpeg",
             alt: "Dr. Carlos López",
             valorConsulta: 400.00
         },
@@ -45,7 +45,7 @@ const medicosData = {
             especialidadId: 4,
             descripcion: "Dermatólogo con experiencia en dermatología clínica y quirúrgica. Especializado en tratamientos estéticos.",
             obrasocialesId: [1, 3],
-            imagen: "img/dermatologo-suarez.jpeg",   //esa imagen no existe tengo q buscar una
+            imagen: "img/dermatologo-suarez.jpg",   //esa imagen no existe tengo q buscar una
             alt: "Dr. Ernesto Suárez",
             valorConsulta: 450.00
         }
