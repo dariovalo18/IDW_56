@@ -120,6 +120,40 @@ const horariosData = {
             horaInicio: "15:00",
             horaFin: "19:00",
             duracionTurno: 20
+        },
+        // Horarios por defecto para médico 3 (si no existían)
+        {
+            id: 7,
+            medicoId: 3,
+            dia: "Martes",
+            horaInicio: "09:00",
+            horaFin: "12:00",
+            duracionTurno: 30
+        },
+        {
+            id: 8,
+            medicoId: 3,
+            dia: "Jueves",
+            horaInicio: "14:00",
+            horaFin: "18:00",
+            duracionTurno: 30
+        },
+        // Horarios por defecto para médico 4 (si no existían)
+        {
+            id: 9,
+            medicoId: 4,
+            dia: "Lunes",
+            horaInicio: "10:00",
+            horaFin: "13:00",
+            duracionTurno: 20
+        },
+        {
+            id: 10,
+            medicoId: 4,
+            dia: "Miércoles",
+            horaInicio: "15:00",
+            horaFin: "19:00",
+            duracionTurno: 20
         }
     ]
 };
