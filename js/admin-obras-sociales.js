@@ -47,6 +47,8 @@ function abrirModalAgregar() {
     const form = document.getElementById('formObraSocial');
     form.reset();
     document.getElementById('obraSocialId').value = '';
+    document.getElementById('obraDescripcion').value = '';
+    document.getElementById('obraImagen').value = '';
     document.getElementById('modalObraSocial').querySelector('.modal-title').textContent = 'Agregar Obra Social';
     const modal = new bootstrap.Modal(document.getElementById('modalObraSocial'));
     modal.show();
@@ -64,6 +66,8 @@ function abrirModalEditar(id) {
     document.getElementById('obraSocialId').value = obra.id;
     document.getElementById('obraSocialNombre').value = obra.nombre;
     document.getElementById('obraPorcentaje').value = obra.porcentaje;
+    document.getElementById('obraDescripcion').value = obra.descripcion;
+    document.getElementById('obraImagen').value = obra.imagen;
 
     document.getElementById('modalObraSocial').querySelector('.modal-title').textContent = 'Editar Obra Social';
     const modal = new bootstrap.Modal(document.getElementById('modalObraSocial'));
@@ -75,6 +79,8 @@ function guardarObraSocial() {
     const idRaw = document.getElementById('obraSocialId').value;
     const nombre = document.getElementById('obraSocialNombre').value.trim();
     const porcentajeRaw = document.getElementById('obraPorcentaje').value;
+    const descripcion = document.getElementById('obraDescripcion').value.trim();
+    const imagen = document.getElementById('obraImagen').value.trim();
 
     // validaciones básicas
     if (!nombre) {
@@ -90,11 +96,11 @@ function guardarObraSocial() {
     if (idRaw && idRaw !== '') {
         const id = parseInt(idRaw, 10);
         // Llama a la función de datos: editarObraSocial
-        editarObraSocial(id, nombre, porcentaje);
+        editarObraSocial(id, nombre, porcentaje, descripcion, imagen);
         mostrarToast('Obra social actualizada', 'success');
     } else {
         // Llama a la función de datos: agregarObraSocial
-        agregarObraSocial({ nombre, porcentaje });
+        agregarObraSocial({ nombre, porcentaje, descripcion, imagen });
         mostrarToast('Obra social agregada', 'success');
     }
 
