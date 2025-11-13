@@ -1,16 +1,30 @@
-# IDW_56
-# TP1-IDW
-Trabajo practivo parte 3 de IDW 2025
+# Presentación del Trabajo Práctico - IDW 2025
+# Grupo 56
 
-Primera parte del trabajo integrador
+# Integrantes:
+
+    Darío Gabriel Arias
+
+    Andrés Agustín García
+
+    Nicolás Ibarra
+
+    Valentín Suárez
+
+# Proyecto Final - Trabajo Integrador
+📁 Repositorio del Proyecto
+
+Enlace: https://github.com/dariovalo18/IDW_56
+
+# 🎥 Video de Presentación
+
+# Duración y estructura del video:
 
 
-# Grupo 56:
+Nota: Incluimos un video adicional con información complementaria que consideramos relevante para comprender mejor nuestro trabajo. Si disponen de tiempo, les recomendamos ver el video ; 
 
-* Dario Gabriel Arias
-* Andrés Agustín Garcia
-* Nicolas Ibarra
-* Valentin Suarez
+Presentación oficial: https://youtu.be/ng2nfcLuKE8
 
+EXTRA:  https://youtu.be/FwVsPayxUzU 
 
-# Link a repositorio: https://github.com/dariovalo18/IDW_56
+*Trabajo Práctico para la materia IDW - 2025*
