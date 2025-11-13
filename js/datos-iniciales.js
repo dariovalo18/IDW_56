@@ -9,7 +9,7 @@ const medicosData = {
             especialidadId: 1,
             descripcion: "Cardióloga con 15 años de experiencia en diagnóstico y tratamiento de enfermedades cardiovasculares. Especializada en cardiología pediátrica.",
             obrasocialesId: [1, 2, 3],
-            imagen: "img/cardiologa-gomez.jpeg",
+            imagen: "https://he.amr.org.ar/wp-content/uploads/sites/14/2022/03/ARGUELLO_MARIA-367x367.jpg",
             alt: "Dra. Analía Gómez",
             valorConsulta: 500.00
         },
@@ -22,6 +22,7 @@ const medicosData = {
             descripcion: "Pediatra con 10 años de experiencia en atención integral de niños. Especializado en pediatría general y neonatología.",
             obrasocialesId: [1, 2, 4],
             imagen: "img/Pediatra-Lopez.jpeg",
+            imagen: "https://he.amr.org.ar/wp-content/uploads/sites/14/2022/01/FAVARETO_JUAN-367x367.jpg",
             alt: "Dr. Carlos López",
             valorConsulta: 400.00
         },
@@ -33,7 +34,7 @@ const medicosData = {
             especialidadId: 3,
             descripcion: "Neuróloga especializada en trastornos neurológicos y enfermedades degenerativas. Docente en la Universidad Nacional.",
             obrasocialesId: [2, 3, 4],
-            imagen: "img/Pediatra-rodriguez.jpeg",
+            imagen: "https://he.amr.org.ar/wp-content/uploads/sites/14/2022/01/ZACCARDI_JULIA-367x367.jpg",
             alt: "Dra. Mariana Rodríguez",
             valorConsulta: 600.00
         },
@@ -46,6 +47,7 @@ const medicosData = {
             descripcion: "Dermatólogo con experiencia en dermatología clínica y quirúrgica. Especializado en tratamientos estéticos.",
             obrasocialesId: [1, 3],
             imagen: "img/dermatologo-suarez.jpg",   //esa imagen no existe tengo q buscar una
+            imagen: "https://he.amr.org.ar/wp-content/uploads/sites/14/2022/01/BUSNELLI_MAURICIO-367x367.jpg",   //esa imagen no existe tengo q buscar una
             alt: "Dr. Ernesto Suárez",
             valorConsulta: 450.00
         }
@@ -62,11 +64,10 @@ const especialidadesData = {
 };
 
 const obrassocialesData = {
-    obrasSociales: [
-        { id: 1, nombre: "OSDE", porcentaje: 80 },
-        { id: 2, nombre: "SANCOR", porcentaje: 75 },
-        { id: 3, nombre: "OBRA SOCIAL NACIONAL", porcentaje: 70 },
-        { id: 4, nombre: "Swiss MEDICAL", porcentaje: 85 }
+    obrasSociales : [
+        { id: 1, nombre: "OSDE", porcentaje: 10, descripcion: "Cobertura nacional de OSDE", imagen: "img/osde-logo.jpg" },
+        { id: 2, nombre: "Swiss Medical", porcentaje: 15, descripcion: "Cobertura nacional de Swiss Medical", imagen: "img/swiss-medical-logo.jpeg" },
+        { id: 3, nombre: "Galeno", porcentaje: 20, descripcion: "Cobertura en Buenos Aires", imagen: "img/galeno-logo.jpeg" }
     ]
 };
 
@@ -120,7 +121,42 @@ const horariosData = {
             horaInicio: "15:00",
             horaFin: "19:00",
             duracionTurno: 20
+        },
+        // Horarios por defecto para médico 3 (si no existían)
+        {
+            id: 7,
+            medicoId: 3,
+            dia: "Martes",
+            horaInicio: "09:00",
+            horaFin: "12:00",
+            duracionTurno: 30
+        },
+        {
+            id: 8,
+            medicoId: 3,
+            dia: "Jueves",
+            horaInicio: "14:00",
+            horaFin: "18:00",
+            duracionTurno: 30
+        },
+        // Horarios por defecto para médico 4 (si no existían)
+        {
+            id: 9,
+            medicoId: 4,
+            dia: "Lunes",
+            horaInicio: "10:00",
+            horaFin: "13:00",
+            duracionTurno: 20
+        },
+        {
+            id: 10,
+            medicoId: 4,
+            dia: "Miércoles",
+            horaInicio: "15:00",
+            horaFin: "19:00",
+            duracionTurno: 20
         }
+        
     ]
 };
 
@@ -131,6 +167,7 @@ const turnosData = {
             id: 1,
             pacienteId: 101,
             pacienteNombre: "Juan García",
+            pacienteDocumento: "756.12345.6",
             medicoId: 1,
             horarioId: 1,
             fecha: "2025-11-18",
@@ -142,6 +179,7 @@ const turnosData = {
             id: 2,
             pacienteId: 102,
             pacienteNombre: "María López",
+            pacienteDocumento: "987.65432.1",
             medicoId: 1,
             horarioId: 1,
             fecha: "2025-11-18",

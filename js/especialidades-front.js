@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Crear tarjetas de médicos
             medicosFiltrados.forEach(medico => {
                 const card = document.createElement('div');
-                card.className = 'col-md-4 mb-4';
+                card.className = 'col-md-3 mb-3';
                 
                 // Obtener nombre de especialidad
                 const especialidad = especialidades.find(e => e.id === medico.especialidadId);
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 card.innerHTML = `
                     <div class="card h-100">
-                        <img src="${medico.imagen || 'img/default-doctor.jpg'}" class="card-img-top" alt="${medico.alt || 'Médico'}" onerror="this.src='img/default-doctor.jpg'; this.alt='Imagen no disponible';">
+                        <img src="${medico.imagen || 'img/default-doctor.jpg'}" class="medico-card-img" alt="${medico.alt || 'Médico'}" onerror="this.src='img/default-doctor.jpg'; this.alt='Imagen no disponible';">
                         <div class="card-body">
                             <h5 class="card-title">${medico.apellido || ''}, ${medico.nombre || 'N/A'}</h5>
                             <p class="card-text text-muted"><small>${nombreEspecialidad}</small></p>

@@ -148,8 +148,18 @@
                             <label for="obraPorcentaje" class="form-label">Porcentaje (%)</label>
                             <input type="number" class="form-control" id="obraPorcentaje" min="0" max="100" required>
                         </div>
+                        <!-- CAMBIO: Se agregó el campo Descripcion y Url de Imagesn -->
+                        <div class="mb-3">
+                            <label for="obraSocialDescripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="obraSocialDescripcion" rows="2"></textarea>
+                        </div>
+                    
+                        <div class="mb-3">
+                            <label for="obraSocialImagen" class="form-label">URL de Imagen</label>
+                            <input type="text" class="form-control" id="obraSocialImagen">
+                        </div>
+                        </div>
                     </form>
-                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     <button type="button" class="btn btn-success" onclick="guardarObraSocial()">
@@ -180,7 +190,11 @@
     </div>
 
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Sesión y verificación (necesario para mostrar el nombre del usuario) -->
+    <script src="js/login-user.js"></script>
+    <script src="js/datos-iniciales.js"></script>
     <script src="js/obras-sociales-data.js"></script>
     <script src="js/admin-obras-sociales.js"></script>
+    <script src="js/verificacion-login.js"></script>
 </body>
 </html>

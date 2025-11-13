@@ -18,8 +18,12 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
     
-    // Si ya seleccionó obra social, redirigir a agendar
-    if (sesion.obraSocialId) {
+    // Verificar si viene para cambiar obra social (tiene parámetro cambiar en URL)
+    const urlParams = new URLSearchParams(window.location.search);
+    const esCambio = urlParams.get('cambiar') === 'true';
+    
+    // Si ya seleccionó obra social Y no viene a cambiarla, redirigir a agendar
+    if (sesion.obraSocialId && !esCambio) {
         window.location.href = 'paciente-agendar.html';
         return;
     }
@@ -32,15 +36,18 @@ document.addEventListener('DOMContentLoaded', function() {
 function cargarObrasSociales() {
     let obrasArray = [];
     
-    // Obtener obras sociales de localStorage o datos iniciales
+    // Obtener obras sociales SOLO de localStorage
     const obrasDataStr = localStorage.getItem('obrassocialesData');
     if (obrasDataStr) {
         const obrasObj = JSON.parse(obrasDataStr);
         obrasArray = obrasObj.obrasSociales || obrasObj;
     }
     
-    if (obrasArray.length === 0 && obrassocialesData && obrassocialesData.obrasSociales) {
+    // Si no hay en localStorage, intentar con datos iniciales como último recurso
+    if (obrasArray.length === 0 && typeof obrassocialesData !== 'undefined' && obrassocialesData.obrasSociales) {
         obrasArray = obrassocialesData.obrasSociales;
+        // Guardar en localStorage para usos futuros
+        localStorage.setItem('obrassocialesData', JSON.stringify(obrassocialesData));
     }
     
     const container = document.getElementById('obrassocialesContainer');
@@ -88,15 +95,31 @@ function cargarObrasSociales() {
 
 // Seleccionar una obra social
 function seleccionarObraSocial(id, nombre, porcentaje) {
+    // Validar y obtener el porcentaje correcto del localStorage
+    let obrasArray = [];
+    const obrasDataStr = localStorage.getItem('obrassocialesData');
+    if (obrasDataStr) {
+        const obrasObj = JSON.parse(obrasDataStr);
+        obrasArray = obrasObj.obrasSociales || obrasObj;
+    }
+    
+    if (obrasArray.length === 0 && obrassocialesData && obrassocialesData.obrasSociales) {
+        obrasArray = obrassocialesData.obrasSociales;
+    }
+    
+    // Buscar la obra social en el array para obtener el porcentaje exacto
+    const obraEncontrada = obrasArray.find(o => o.id === id);
+    const porcentajeCorrecta = obraEncontrada ? obraEncontrada.porcentaje : porcentaje;
+    
     obraSocialSeleccionada = {
         id: id,
         nombre: nombre,
-        porcentaje: porcentaje
+        porcentaje: porcentajeCorrecta
     };
     
     // Mostrar confirmación en el modal
     document.getElementById('nombreObraConfirm').textContent = nombre;
-    document.getElementById('porcentajeObraConfirm').textContent = porcentaje;
+    document.getElementById('porcentajeObraConfirm').textContent = porcentajeCorrecta;
     
     // Abrir modal de confirmación
     const modal = new bootstrap.Modal(document.getElementById('modalConfirmarObra'));
@@ -117,6 +140,16 @@ function confirmarObraSocial() {
     sesion.obraSocialPorcentaje = obraSocialSeleccionada.porcentaje;
     
     localStorage.setItem('sesion', JSON.stringify(sesion));
+    
+    // También guardar la obra social seleccionada de forma persistente para futuras sesiones
+    const obraSocialGuardada = {
+        id: obraSocialSeleccionada.id,
+        nombre: obraSocialSeleccionada.nombre,
+        porcentaje: obraSocialSeleccionada.porcentaje,
+        pacienteId: sesion.id,
+        fechaSeleccion: new Date().toISOString()
+    };
+    localStorage.setItem('obraSocialSeleccionada_' + sesion.id, JSON.stringify(obraSocialGuardada));
     
     // Cerrar modal
     bootstrap.Modal.getInstance(document.getElementById('modalConfirmarObra')).hide();

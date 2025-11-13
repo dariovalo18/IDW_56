@@ -269,12 +269,13 @@ function confirmarAgendarTurno() {
             const nuevoTurno = {
                 pacienteId: sesion.id,
                 pacienteNombre: `${sesion.firstName} ${sesion.lastName}`,
-                pacienteDocumento: sesion.documento || 'N/A',
+                pacienteDocumento: sesion.ssn || 'N/A',
                 medicoId: medicoSeleccionadoId,
                 fecha: fecha,
                 hora: horaSeleccionada,
                 obraSocialId: sesion.obraSocialId || null,
                 obraSocialNombre: sesion.obraSocialNombre || 'Sin obra social',
+                obraSocialPorcentaje: sesion.obraSocialPorcentaje || 0,
                 estado: 'confirmado',
                 fechaAgendado: new Date().toISOString()
             };
@@ -333,5 +334,5 @@ function crearContenedorToast() {
 
 // Función para cambiar obra social
 function cambiarObraSocial() {
-    window.location.href = 'seleccionar-obra-social.html';
+    window.location.href = 'seleccionar-obra-social.html?cambiar=true';
 }

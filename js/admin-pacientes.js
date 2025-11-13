@@ -30,6 +30,7 @@ function filtrarDatosUsuario(usuario) {
         firstName: usuario.firstName,
         lastName: usuario.lastName,
         username: usuario.username,
+        ssn: usuario.ssn || 'N/A',
         gender: usuario.gender,
         age: usuario.age
     };
@@ -142,7 +143,7 @@ async function cargarTablaPacientes() {
         if (!usuarios || usuarios.length === 0) {
             tbody.innerHTML = `
                 <tr>
-                    <td colspan="7" class="text-center text-muted">
+                    <td colspan="8" class="text-center text-muted">
                         No se encontraron pacientes
                     </td>
                 </tr>
@@ -156,7 +157,7 @@ async function cargarTablaPacientes() {
         if (pacientes.length === 0) {
             tbody.innerHTML = `
                 <tr>
-                    <td colspan="7" class="text-center text-muted">
+                    <td colspan="8" class="text-center text-muted">
                         No hay pacientes registrados
                     </td>
                 </tr>
@@ -178,6 +179,7 @@ async function cargarTablaPacientes() {
                 </td>
                 <td>${datosLimpios.firstName} ${datosLimpios.lastName}</td>
                 <td><code>${datosLimpios.username}</code></td>
+                <td><small class="text-muted">${datosLimpios.ssn}</small></td>
                 <td>
                     <span class="badge ${datosLimpios.gender === 'male' ? 'bg-primary' : 'bg-danger'}">
                         ${datosLimpios.gender === 'male' ? 'Masculino' : 'Femenino'}
@@ -206,7 +208,7 @@ async function cargarTablaPacientes() {
         console.error('Error al cargar pacientes:', error);
         tbody.innerHTML = `
             <tr>
-                <td colspan="7" class="text-center text-danger">
+                <td colspan="8" class="text-center text-danger">
                     Error al cargar los pacientes. Intenta nuevamente.
                 </td>
             </tr>

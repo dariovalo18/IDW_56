@@ -1,3 +1,14 @@
+/* Imágenes más chicas en tarjetas de médicos (especialidades.html) */
+.medico-card-img {
+    max-width: 72px;
+    max-height: 72px;
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 0 auto 8px auto;
+    display: block;
+}
 .admin-header {
     background: linear-gradient(135deg, #198754, #20c997);
     color: white;
@@ -23,11 +34,14 @@
     color: white;
 }
 
+/* Hacer las imágenes de médicos más chicas en listados */
 .preview-img {
-    max-width: 100px;
-    max-height: 100px;
+    max-width: 56px;   /* antes 100px */
+    max-height: 56px;  /* antes 100px */
+    width: 56px;
+    height: 56px;
     object-fit: cover;
-    border-radius: 5px;
+    border-radius: 6px;
 }
 
 .user-info {

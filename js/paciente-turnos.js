@@ -12,6 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const sesion = JSON.parse(localStorage.getItem('sesion') || '{}');
     const pacienteId = sesion.id;
 
+    // Mostrar nombre del usuario
+    if (sesion.firstName && sesion.lastName) {
+        document.getElementById('nombreUsuario').textContent = `${sesion.firstName} ${sesion.lastName}`;
+    }
+
     if (!pacienteId) {
         alert('No se pudo obtener el ID del paciente');
         return;
@@ -56,8 +61,9 @@ function cargarTurnosPaciente(pacienteId) {
         const nombreMedico = medico ? `${medico.apellido ? medico.apellido + ', ' : ''}${medico.nombre}` : 'N/A';
         const nombreEspecialidad = especialidad ? especialidad.nombre : 'N/A';
 
-        // formatear fecha
-        const fecha = new Date(turno.fecha);
+        // formatear fecha correctamente (turno.fecha está en formato YYYY-MM-DD)
+        const fechaParts = turno.fecha.split('-');
+        const fecha = new Date(parseInt(fechaParts[0]), parseInt(fechaParts[1]) - 1, parseInt(fechaParts[2]));
         const fechaFormato = fecha.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
         // color del estado

@@ -6,6 +6,26 @@ document.addEventListener('DOMContentLoaded', () => {
     cargarTablaObrasSociales();      // carga
 });
 
+// función para cerrar sesión desde el botón del header
+function cerrarSesionAdmin() {
+    try {
+        if (confirm('¿Seguro que quieres cerrar la sesión?')) {
+            if (typeof cerrarSesion === 'function') {
+                cerrarSesion();
+            } else {
+                // Fallback: limpiar mínimamente y redirigir
+                localStorage.removeItem('sesion');
+                localStorage.removeItem('sesionAdmin');
+                sessionStorage.clear();
+                window.location.href = 'admin.html';
+            }
+        }
+    } catch (e) {
+        console.error('Error al cerrar sesión:', e);
+        window.location.href = 'admin.html';
+    }
+}
+
 // Cargar la tabla y genera filas
 function cargarTablaObrasSociales() {
     const tabla = document.getElementById('tablaObrasSociales');
@@ -47,6 +67,11 @@ function abrirModalAgregar() {
     const form = document.getElementById('formObraSocial');
     form.reset();
     document.getElementById('obraSocialId').value = '';
+    // IDs correctos según el HTML: obraSocialDescripcion y obraSocialImagen
+    const descEl = document.getElementById('obraSocialDescripcion');
+    const imgEl = document.getElementById('obraSocialImagen');
+    if (descEl) descEl.value = '';
+    if (imgEl) imgEl.value = '';
     document.getElementById('modalObraSocial').querySelector('.modal-title').textContent = 'Agregar Obra Social';
     const modal = new bootstrap.Modal(document.getElementById('modalObraSocial'));
     modal.show();
@@ -64,6 +89,10 @@ function abrirModalEditar(id) {
     document.getElementById('obraSocialId').value = obra.id;
     document.getElementById('obraSocialNombre').value = obra.nombre;
     document.getElementById('obraPorcentaje').value = obra.porcentaje;
+    const descEl = document.getElementById('obraSocialDescripcion');
+    const imgEl = document.getElementById('obraSocialImagen');
+    if (descEl) descEl.value = obra.descripcion || '';
+    if (imgEl) imgEl.value = obra.imagen || '';
 
     document.getElementById('modalObraSocial').querySelector('.modal-title').textContent = 'Editar Obra Social';
     const modal = new bootstrap.Modal(document.getElementById('modalObraSocial'));
@@ -75,6 +104,10 @@ function guardarObraSocial() {
     const idRaw = document.getElementById('obraSocialId').value;
     const nombre = document.getElementById('obraSocialNombre').value.trim();
     const porcentajeRaw = document.getElementById('obraPorcentaje').value;
+    const descEl = document.getElementById('obraSocialDescripcion');
+    const imgEl = document.getElementById('obraSocialImagen');
+    const descripcion = descEl ? descEl.value.trim() : '';
+    const imagen = imgEl ? imgEl.value.trim() : '';
 
     // validaciones básicas
     if (!nombre) {
@@ -90,11 +123,11 @@ function guardarObraSocial() {
     if (idRaw && idRaw !== '') {
         const id = parseInt(idRaw, 10);
         // Llama a la función de datos: editarObraSocial
-        editarObraSocial(id, nombre, porcentaje);
+        editarObraSocial(id, nombre, porcentaje, descripcion, imagen);
         mostrarToast('Obra social actualizada', 'success');
     } else {
         // Llama a la función de datos: agregarObraSocial
-        agregarObraSocial({ nombre, porcentaje });
+        agregarObraSocial({ nombre, porcentaje, descripcion, imagen });
         mostrarToast('Obra social agregada', 'success');
     }
 

@@ -17,6 +17,19 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Si es paciente, redirigir apropiadamente
             if (sesion.role !== 'admin') {
+                // Buscar si tiene obra social guardada
+                const obraSocialGuardada = localStorage.getItem('obraSocialSeleccionada_' + sesion.id);
+                
+                if (obraSocialGuardada && !sesion.obraSocialId) {
+                    // Restaurar obra social guardada
+                    const obra = JSON.parse(obraSocialGuardada);
+                    sesion.obraSocialId = obra.id;
+                    sesion.obraSocialNombre = obra.nombre;
+                    sesion.obraSocialPorcentaje = obra.porcentaje;
+                    localStorage.setItem('sesion', JSON.stringify(sesion));
+                }
+                
+                // Redirigir según si tiene obra social
                 if (!sesion.obraSocialId) {
                     console.log('Paciente sin obra social, redirigiendo a selección');
                     window.location.href = 'seleccionar-obra-social.html';
@@ -57,12 +70,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 const sesion = JSON.parse(localStorage.getItem('sesion') || '{}');
                 console.log('Sesion después del login:', sesion);
                 
-                // Si es paciente, ir a seleccionar obra social
+                // Si es paciente
                 if (sesion.role !== 'admin') {
-                    console.log('Redirigiendo paciente a selección de obra social');
-                    setTimeout(() => {
-                        window.location.href = 'seleccionar-obra-social.html';
-                    }, 1000);
+                    // Buscar si tiene obra social guardada previamente
+                    const obraSocialGuardada = localStorage.getItem('obraSocialSeleccionada_' + sesion.id);
+                    
+                    if (obraSocialGuardada) {
+                        // Tiene obra social guardada, restaurarla en sesión
+                        const obra = JSON.parse(obraSocialGuardada);
+                        sesion.obraSocialId = obra.id;
+                        sesion.obraSocialNombre = obra.nombre;
+                        sesion.obraSocialPorcentaje = obra.porcentaje;
+                        localStorage.setItem('sesion', JSON.stringify(sesion));
+                        console.log('Obra social restaurada del localStorage');
+                        
+                        // Ir directamente a agendar
+                        setTimeout(() => {
+                            window.location.href = 'paciente-agendar.html';
+                        }, 1000);
+                    } else {
+                        // No tiene obra social, ir a seleccionar
+                        console.log('Redirigiendo paciente a selección de obra social');
+                        setTimeout(() => {
+                            window.location.href = 'seleccionar-obra-social.html';
+                        }, 1000);
+                    }
                 } else {
                     // Si es admin, ir al panel de administración
                     const destino = 'admin-medicos.html';
